@@ -22,7 +22,9 @@
                 <ul>
                     <li><a href="{{ url_for('index') }}">Home</a></li>
                     <li><a href="#">Polls</a></li>
+                    {% if current_user.is_admin %}
                     <li><a href="#">Admin</a></li>
+                    {% endif %}
                     {% if current_user.is_anonymous %}
                     <li><a id="active" href="{{ url_for('login') }}">Login</a></li>
                     {% else %}
