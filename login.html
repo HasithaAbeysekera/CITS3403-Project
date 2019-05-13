@@ -20,7 +20,7 @@
       <div class="logo">Soccer Polls</div>
       <ul class="navbar-not-home">
         <li><a href="home.html">Home</a></li>
-        <li><a href="#">Polls</a></li>
+        <li><a href="table.html">Polls</a></li>
         <li><a href="#">Admin</a></li>
         <li><a id="active" href="#">Login</a></li>
       </ul>
@@ -33,27 +33,30 @@
   <div class="form-wrapper">
     <h2 class="login-header">Login Form</h2>
 
-    <form class="form" action="/action_page.php" onsubmit="return validateForm(this)">
+    <form class="form" onsubmit="return validateForm(this)">
       <div class="login-icon fa-3x">
         <i class="fas fa-users"></i>
       </div>
 
       <div class="form-container">
-        <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
+        <label class="register-para" for="username"><b>Username</b></label>
+        <input id="username "type="text" placeholder="Enter Username" name="username" required>
 
-        <label for="password"><b>Password</b></label>
+        <label class="register-para" for="password"><b>Password</b></label>
         <input id="password" type="password" placeholder="Enter Password" name="password" required>
 
         <button class="form-button" type="submit">Login</button>
-        <label>
-          <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
+        <!-- <span class="forgot-password"> <a href="#">Forgot password?</a></span> -->
       </div>
 
-      <div class="form-container form-bottom">
+      <!-- <div class="form-bottom">
         <button class="form-button cancelbtn" type="button">Cancel</button>
-        <span class="forgot-password"> <a href="#">Forgot password?</a></span>
+        <div class="register">
+          <p class="register-para">Don't have an account? <a href="register.html">Register now</a>.</p>
+        </div>
+      </div> -->
+      <div class="form-bottom">
+        <p class="register-para">Don't have an account? <a href="register.html">Register now</a>.</p>
       </div>
     </form>
   </div>
