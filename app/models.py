@@ -13,10 +13,10 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    is_admin = db.Column(db.Boolean)
+    admin = db.Column(db.Boolean, index=False, default=False)
     posts = db.relationship('Post', backref='author', lazy='dynamic')
-    
-    #check admin
+
+
     def __repr__(self):
         return '<User {}>'.format(self.username)    
 
@@ -25,6 +25,36 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+class Player(db.Model):
+
+    __table_args__ = (db.UniqueConstraint("firstname", "lastname"),)
+    
+    playerid = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String(64), index=True, unique=False)
+    lastname = db.Column(db.String(64), index=True, unique=False)
+    nationality = db.Column(db.String(64), index=True, unique=False)
+    club = db.Column(db.String(64), index=True, unique=False)
+    
+    
+    #sd
+
+    def __repr__(self):
+        return 'Player: {} {}, Club: {}, Country {}'.format(self.firstname, self.lastname, self.club, self.nationality)
+
+class Poll(db.Model):
+    pollid = db.Column(db.Integer, primary_key=True)
+    creatorid = db.Column(db.Integer, db.ForeignKey('user.id'))
+    #timecreated =
+    #db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    #timeleft = 
+
+class PollVote(db.Model):
+    voteid = db.Column(db.Integer, primary_key=True)
+    userid = db.Column(db.Integer, db.ForeignKey('user.id'))
+    pollid = db.Column(db.Integer, db.ForeignKey('poll.pollid'))
+    playerid = db.Column(db.Integer, db.ForeignKey('player.playerid'))
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)

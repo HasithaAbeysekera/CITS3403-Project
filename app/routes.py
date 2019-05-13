@@ -52,3 +52,17 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+@app.route('/admin')
+def admin():
+    if not current_user.admin:
+        return redirect(url_for('unauthorised'))
+    return render_template('admin.html', title='Admin Page')
+
+@app.route('/unauthorised')
+def unauthorised():
+    return render_template('unauthorised.html', title='Error - You are unauthorised!')
+
+@app.route('/polls')
+def polls():
+    return render_template('polls.html', title='Polls')
