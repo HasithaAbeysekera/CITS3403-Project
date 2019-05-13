@@ -1,0 +1,56 @@
+{% extends "base2.html" %}
+
+{% block content %}
+
+    <h1>Sign In</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
+
+    <!---->
+    <div class="form-wrapper">
+        <h2 class="login-header">Login Form</h2>
+    
+        <form class="form" action="/action_page.php" onsubmit="return validateForm(this)">
+          <div class="login-icon fa-3x">
+            <i class="fas fa-users"></i>
+          </div>
+    
+          <div class="form-container">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+    
+            <label for="password"><b>Password</b></label>
+            <input id="password" type="password" placeholder="Enter Password" name="password" required>
+    
+            <button class="form-button" type="submit">Login</button>
+            <label>
+              <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+          </div>
+    
+          <div class="form-container form-bottom">
+            <button class="form-button cancelbtn" type="button">Cancel</button>
+            <span class="forgot-password"> <a href="#">Forgot password?</a></span>
+          </div>
+        </form>
+      </div>
+{% endblock %}
