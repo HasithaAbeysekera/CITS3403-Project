@@ -42,17 +42,17 @@ class Player(db.Model):
     def __repr__(self):
         return 'Player: {} {}, Club: {}, Country {}'.format(self.firstname, self.lastname, self.club, self.nationality)
 
-class Poll(db.Model):
+
+class Polls(db.Model):
     pollid = db.Column(db.Integer, primary_key=True)
+    pollname = db.Column(db.String(64), index=True, unique=False)
     creatorid = db.Column(db.Integer, db.ForeignKey('user.id'))
-    #timecreated =
-    #db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    #timeleft = 
+    
 
 class PollVote(db.Model):
     voteid = db.Column(db.Integer, primary_key=True)
     userid = db.Column(db.Integer, db.ForeignKey('user.id'))
-    pollid = db.Column(db.Integer, db.ForeignKey('poll.pollid'))
+    pollid = db.Column(db.Integer, db.ForeignKey('polls.pollid'))
     playerid = db.Column(db.Integer, db.ForeignKey('player.playerid'))
 
 
