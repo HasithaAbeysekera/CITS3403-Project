@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user
 from flask_login import logout_user
-from app.models import User
+from app.models import User, Polls
 from app import app
 from app.forms import LoginForm
 from flask_login import login_required
@@ -65,5 +65,5 @@ def unauthorised():
 
 @app.route('/polllist')
 def polllist():
-    polls = Poll.query.all()
-    return render_template('polls.html', title='Polls')
+    polls = Polls.query.all()
+    return render_template('polllist.html', polllist=polls)

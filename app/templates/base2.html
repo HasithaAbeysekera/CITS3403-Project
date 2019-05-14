@@ -21,7 +21,7 @@
             <div class="logo">Soccer Polls</div>
             <ul class="navbar-not-home">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
-                <li><a href="{{ url_for('polls') }}">Polls</a></li>
+                <li><a href="{{ url_for('polllist') }}">Polls</a></li>
                 {% if current_user.admin %}
                 <li><a href="{{ url_for('admin') }}">Admin</a></li>
                 {% endif%}

@@ -47,11 +47,11 @@
                 </tr>
             </thead>
             <tbody>
-                {% for poll in Polls %}
-                <tr id={{ Poll.id }}>
-                    <td class="column">{{ poll.id }} </td>
-                    <td class="column">{{ poll.creator }} </td>
-                    <td class="column">{{ poll.name }} </td>
+                {% for poll in polllist %}
+                <tr id= poll.id >
+                    <td class="column">{{ poll.pollid }} </td>
+                    <td class="column">{{ poll.creator.username }} </td>
+                    <td class="column">{{ poll.pollname }} </td>
                     <td class="column"><a href="#" class="button">View Poll </a></td>
                     <!-- <td class="column">  <a href="#" class="button"> Vote on Poll </a></td> -->
 
