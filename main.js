@@ -40,17 +40,17 @@ document.getElementById("demo2").innerHTML = a;
 
 // footer code ends
 
-// Login Validation code starts
+// Login and register Validation code starts
 
-function validateForm2(form) {
-
-    if(form.password.value != form.passwordrepeat.value) {
-      alert("Error: Passwords don't match!");
-      form.password.focus();
-      return false;
-    }
-
-}
+// function validateForm2(form) {
+//
+//     if(form.password.value != form.passwordrepeat.value) {
+//       alert("Error: Passwords don't match!");
+//       form.password.focus();
+//       return false;
+//     }
+//
+// }
 
 function validateForm(form) {
 
@@ -60,10 +60,9 @@ function validateForm(form) {
     form.username.focus();
     return false;
   }
-
-  if(form.password.value.length < 6) {
-    alert("Error: Password must contain at least six characters!");
-    form.password.focus();
+  if(!field.test(form.password.value)) {
+    alert("Error: Password must contain only letters, numbers and underscores!");
+    form.username.focus();
     return false;
   }
 
@@ -78,6 +77,7 @@ function validateForm(form) {
     form.password.focus();
     return false;
   }
+  
   field = /[0-9]/;
   if(!field.test(form.password.value)) {
     alert("Error: password must contain at least one number (0-9)!");
@@ -96,10 +96,11 @@ function validateForm(form) {
     form.password.focus();
     return false;
   }
-  // else {
-  //   alert("You entered a valid password: " + form.password.value);
-  //   return true;
-  // }
+  if(form.password.value != form.passwordrepeat.value) {
+    alert("Error: Passwords don't match!");
+    form.password.focus();
+    return false;
+  }
 }
 
 // Login Validation code ends
