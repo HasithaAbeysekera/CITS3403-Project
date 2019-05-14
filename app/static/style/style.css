@@ -96,7 +96,7 @@ body {
 
 .content-head {
   font-size: 2rem;
- }
+}
 
  .button {
    text-decoration: none;
@@ -150,7 +150,7 @@ footer p {
 
 #header-text h2,
 #header-text p {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'PT Sans', sans-serif;:
 }
 
 #header-text h1 {
@@ -252,6 +252,84 @@ nav ul li a:hover {
 
 /* Navbar/header code ends */
 
+
+/* login and register form styling */
+
+.form-wrapper {
+  margin: 12rem 22rem;
+}
+
+.form {
+  border: 3px solid #f1f1f1;
+}
+
+.login-header {
+  text-align: center;
+  font-weight: bold;
+}
+
+.form-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.form-button:hover {
+  opacity: 1;
+}
+
+.form-bottom {
+  background-color: #f1f1f1;
+  padding: 16px;
+  text-align: center;
+  border: 3px solid #f1f1f1;
+}
+
+.login-icon {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+.form-container {
+  padding: 16px;
+}
+
+.register {
+  float: right;
+}
+
+.form input[type=text],
+.form input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+.form input[type=text]:focus,
+.form input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+@media screen and (max-width: 1165px) {
+  .form-wrapper {
+    margin: 12rem 15rem;
+  }
+}
+
 @media screen and (max-width: 935px) {
   #header-text {
     padding-left: 27rem;
@@ -259,6 +337,10 @@ nav ul li a:hover {
 }
 
 @media screen and (max-width: 867px) {
+  .form-wrapper {
+    margin: 12rem 10rem;
+  }
+
   nav {
     padding: 0;
   }
@@ -364,14 +446,22 @@ nav ul li a:hover {
   #header-text {
     padding-left: 21rem;
   }
+
+  .form-wrapper {
+    margin: 12rem 6rem;
+  }
 }
 
 @media screen and (max-width: 603px) {
+  .form-wrapper {
+    margin: 12rem 3rem;
+  }
+
   nav ul {
     line-height: 20px;
     /* padding-top: 50px; */
-
   }
+
   nav ul li a {
     font-size: 12px;
   }
@@ -430,6 +520,22 @@ nav ul li a:hover {
   #header-text {
     padding-left: 12rem;
   }
+
+  .form-wrapper {
+    margin: 8rem 2rem;
+  }
+
+  .register-head {
+    font-size: 20px;
+  }
+  .register-para {
+    font-size: 13px;
+  }
+
+  .login-header {
+    font-size: 18px;
+  }
+
 }
 
 
@@ -486,6 +592,7 @@ nav ul li a:hover {
     line-height: 15px;
     padding-top: 40px;
   }
+
   nav ul li a {
     font-size: 10px;
   }
@@ -521,7 +628,6 @@ nav ul li a:hover {
     padding-left: 7rem;
   }
 }
-
 
 /*
 .content {
@@ -790,133 +896,3 @@ tbody tr {
   text-align: right;
   padding-right: 62px;
 } */
-
-
-/* login form styling */
-
-.form-wrapper {
-  margin: 12rem 6rem;
-}
-
-.form {
-  border: 3px solid #f1f1f1;
-}
-
-.login-header {
-  text-align: center;
-  font-weight: bold;
-}
-
-.form input[type=text],
-.form input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-.form-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-.form-bottom {
-  background-color: #f1f1f1;
-}
-
-.form-button:hover {
-  opacity: 0.8;
-}
-
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
-
-.login-icon {
-  text-align: center;
-  margin: 24px 0 12px 0;
-}
-
-img.avatar {
-  width: 40%;
-  border-radius: 50%;
-}
-
-.form-container {
-  padding: 16px;
-}
-
-span.forgot-password {
-  float: right;
-  padding-top: 16px;
-}
-
-/* Add padding to containers */
-.register-container {
-  padding: 16px;
-  background-color: white;
-}
-
-.register-form {
-  border: 3px solid #f1f1f1;
-
-}
-
-/* Full-width input fields */
-.register-form input[type=text],
-.register-form input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-}
-
-.register-form input[type=text]:focus,
-.register-form input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-/* Overwrite default styles of hr */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
-
-/* Set a style for the submit button */
-.registerbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-
-.registerbtn:hover {
-  opacity: 1;
-}
-
-/* Add a blue text color to links */
-.register-form a {
-  color: dodgerblue;
-}
-
-/* Set a grey background color and center the text of the "sign in" section */
-.signin {
-  background-color: #f1f1f1;
-  text-align: center;
-}
