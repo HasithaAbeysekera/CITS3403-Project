@@ -14,7 +14,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     admin = db.Column(db.Boolean, index=False, default=False)
-    posts = db.relationship('Post', backref='author', lazy='dynamic')
+    createdpolls = db.relationship('Polls', backref='creator', lazy='dynamic')
 
 
     def __repr__(self):
@@ -28,19 +28,14 @@ class User(UserMixin, db.Model):
 
 class Player(db.Model):
 
-    __table_args__ = (db.UniqueConstraint("firstname", "lastname"),)
     
     playerid = db.Column(db.Integer, primary_key=True)
-    firstname = db.Column(db.String(64), index=True, unique=False)
-    lastname = db.Column(db.String(64), index=True, unique=False)
+    playername = db.Column(db.String(128), index=True, unique=False)
     nationality = db.Column(db.String(64), index=True, unique=False)
     club = db.Column(db.String(64), index=True, unique=False)
-    
-    
-    #sd
 
     def __repr__(self):
-        return 'Player: {} {}, Club: {}, Country {}'.format(self.firstname, self.lastname, self.club, self.nationality)
+        return 'Player: {}, Club: {}, Country {}'.format(self.playername, self.club, self.nationality)
 
 
 class Polls(db.Model):

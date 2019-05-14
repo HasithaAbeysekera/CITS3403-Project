@@ -63,6 +63,7 @@ def admin():
 def unauthorised():
     return render_template('unauthorised.html', title='Error - You are unauthorised!')
 
-@app.route('/polls')
-def polls():
+@app.route('/polllist')
+def polllist():
+    polls = Poll.query.all()
     return render_template('polls.html', title='Polls')
