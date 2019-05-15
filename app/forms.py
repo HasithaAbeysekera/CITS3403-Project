@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
-from app.models import User, Player
+from app.models import User, Player, Polls
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])

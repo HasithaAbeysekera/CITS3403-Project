@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user
 from flask_login import logout_user
-from app.models import User, Polls, PollVote, PollPlayer
+from app.models import User, Polls, PollVote, PollPlayer, Player
 from app import app
 from app.forms import LoginForm
 from flask_login import login_required
@@ -78,7 +78,17 @@ def poll(pollid):
     votes = PollPlayer.query.filter_by(pollid=pollid)
     return render_template('poll.html', poll=thispoll, votes=votes)
 
-@app.route('/pollcreate')
+@app.route('/pollcreate', methods=['GET', 'POST'])
 def pollcreate():
     form = PollCreateForm()
+    if form.validate_on_submit():
+        newpoll = Polls(pollname=form.pollname.data, creatorid=current_user.id)
+        newpollplayer1 = PollPlayer(pollid=newpoll.pollid, playerid = form.player1.data.playerid, votecount ='0')
+        db.session.add(newpoll)
+        db.session.commit()
+        newpollplayer1 = PollPlayer(pollid=newpoll.pollid, playerid = form.player1.data.playerid, votecount ='0')
+        db.session.add(newpollplayer1)
+        db.session.commit()
+        flash('Congratulations, you have created a new poll')
+        return redirect(url_for('index'))
     return render_template('pollcreate.html', form=form)
