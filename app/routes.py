@@ -1,14 +1,14 @@
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user
 from flask_login import logout_user
-from app.models import User, Polls
+from app.models import User, Polls, PollVote, PollPlayer
 from app import app
 from app.forms import LoginForm
 from flask_login import login_required
 from flask import request
 from werkzeug.urls import url_parse
 from app import db
-from app.forms import RegistrationForm
+from app.forms import RegistrationForm, PlayerEntryForm, PollCreateForm
 
 
 @app.route('/')
@@ -67,3 +67,18 @@ def unauthorised():
 def polllist():
     polls = Polls.query.all()
     return render_template('polllist.html', polllist=polls)
+
+@app.route('/poll/<pollid>')
+#def poll(pollid):
+##    poll = Polls.query.filter_by(pollid=pollid).first()
+#    return render_template('poll.html', poll=pollid)
+
+def poll(pollid):
+    thispoll = Polls.query.filter_by(pollid=pollid).first()
+    votes = PollPlayer.query.filter_by(pollid=pollid)
+    return render_template('poll.html', poll=thispoll, votes=votes)
+
+@app.route('/pollcreate')
+def pollcreate():
+    form = PollCreateForm()
+    return render_template('pollcreate.html', form=form)

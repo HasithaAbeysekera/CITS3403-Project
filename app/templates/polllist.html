@@ -52,7 +52,7 @@
                     <td class="column">{{ poll.pollid }} </td>
                     <td class="column">{{ poll.creator.username }} </td>
                     <td class="column">{{ poll.pollname }} </td>
-                    <td class="column"><a href="#" class="button">View Poll </a></td>
+                    <td class="column"><a href="{{ url_for('poll', pollid=poll.pollid) }}" class="button">View Poll </a></td>
                     <!-- <td class="column">  <a href="#" class="button"> Vote on Poll </a></td> -->
 
                     <!-- <td class="column">iPhone X 64Gb Grey</td>
@@ -62,6 +62,10 @@
                 </tr>
                 {% endfor %}
         </table>
+
+        <div>
+          <a href="{{ url_for('pollcreate')}}" class="button"> Create Poll </a>
+        </div>
     </div>
     <!-- </div> -->
 </div>

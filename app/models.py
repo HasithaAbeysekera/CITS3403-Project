@@ -28,11 +28,11 @@ class User(UserMixin, db.Model):
 
 class Player(db.Model):
 
-    
     playerid = db.Column(db.Integer, primary_key=True)
     playername = db.Column(db.String(128), index=True, unique=False)
     nationality = db.Column(db.String(64), index=True, unique=False)
     club = db.Column(db.String(64), index=True, unique=False)
+    presentpoll = db.relationship('PollPlayer', backref='playerentry', lazy='dynamic')
 
     def __repr__(self):
         return 'Player: {}, Club: {}, Country {}'.format(self.playername, self.club, self.nationality)
@@ -59,3 +59,9 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
+
+class PollPlayer(db.Model):
+    pollplayerid = db.Column(db.Integer, primary_key=True)
+    pollid =  db.Column(db.Integer, db.ForeignKey('polls.pollid'))
+    playerid = db.Column(db.Integer, db.ForeignKey('player.playerid'))
+    votecount = db.Column(db.Integer)

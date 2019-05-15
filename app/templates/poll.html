@@ -1,0 +1,43 @@
+{% extends "base2.html" %}
+
+{% block content %}
+
+
+<div class="container-table100">
+    <!-- <div class="wrap-table100"> -->
+    <div class="table100">
+        <table>
+            <thead>
+                <tr class="table100-head">
+                    <th class="column">Poll ID</th>
+                    <th class="column">Player Name</th>
+                    <th class="column">Votes</th>
+                    <th class="column"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in votes %}
+                <tr id= poll.id >
+                    <td class="column">{{ entry.playerid }} </td>
+                    <td class="column">{{ entry.playerentry.playername }} </td>
+                    <td class="column">{{ entry.votecount }} </td>
+                    <td class="column"><a href="#" class="button">View Poll </a></td>
+                    <!-- <td class="column">  <a href="#" class="button"> Vote on Poll </a></td> -->
+
+                    <!-- <td class="column">iPhone X 64Gb Grey</td>
+                                        <td class="column">$999.00</td>
+                                        <td class="column">1</td>
+                                        <td class="column">$999.00</td> -->
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+    <!-- </div> -->
+</div>
+</body>
+
+
+{% endblock %}
+
+</html>

@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
-from app.models import User
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
+from app.models import User, Player
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -27,4 +28,27 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
-#class PlayerEntryForm(FlaskForm):
+class PlayerEntryForm(FlaskForm):
+    playername = StringField('PlayerName', validators=[DataRequired()])
+    country = StringField('Country')
+    club = StringField('Club')
+    submit = SubmitField('Submit')
+
+    def valudate_playername_dupe(self, playername):
+        name = Player.query.filter_by(playername=playername.data).first()
+        if name is not None:
+            raise ValidationError('This player already exists.')
+
+class PollCreateForm(FlaskForm):
+    def player_choices():      
+        return Player.query.all()
+    
+    pollname = StringField('Poll Name', validators=[DataRequired()])
+    player1 = QuerySelectField(u'Skill level',      
+                               validators=[DataRequired()],
+                               query_factory=player_choices)
+    #player2 = SelectField
+    #player3 = SelectField
+    #player4 = SelectField
+    #player5 = SelectField
+    submit = SubmitField('Submit')
