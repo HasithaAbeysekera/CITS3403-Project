@@ -3,82 +3,77 @@
 {% block content %}
 
 <div class="viewpoll-spacing">
-    <h2 class="center">Who is the best footballer in the world?</h2>
+  <h2 class="center">{{poll.pollname}}</h2>
 
   <!-- Polls section -->
   <section class="view-polls">
     <div class="content grid-2 center">
-      <div class="vertical-line">
-        <div class="table-container2">
+      <!--insert table below-->
+      <div class="table-container2">
         <table class="table-content2">
           <thead>
             <tr>
-              <th>Username</th>
-              <th>Vote</th>
-              <th></th>
+              <th>Player Name</th>
+              <th>Votes</th>
             </tr>
           </thead>
           <tbody>
-              <tr>
-                <td>Samuel Martin</td>
-                <td>Ronaldo</td>
-                <td><a href="#" class="tablebtn">Delete Response </a></td>
-              </tr>
-              <tr>
-                <td>Samuel Martin</td>
-                <td>Messi</td>
-                <td><a href="#" class="tablebtn">Delete Response </a></td>
-              </tr>
-            </table>
-          </div>
-
+            {% for entry in votes %}
+            <tr id=entry.palyerid>
+              <td>{{ entry.playerentry.playername }} </td>
+              <td>{{ entry.votecount }}</td>
+            </tr>
+            {% endfor %}
+        </table>
       </div>
-
       <div class="chart-container">
         <canvas id="myChart"></canvas>
-     </div>
+      </div>
     </div>
   </section>
-  </div>
+</div>
 
+
+
+
+
+<div class="vertical-line">
   <div class="table-container2">
-  <table class="table-content2">
-    
-    <thead>
-      <tr>
-        <th>Player Name</th>
-        <th>Votes</th>
-      </tr>
-    </thead>
-    <tbody>
+    <table class="table-content2">
+      <thead>
         <tr>
-          <td>Ronaldo</td>
-          <td>3</td>
-
+          <th>Username</th>
+          <th>Vote</th>
+          <th></th>
         </tr>
+      </thead>
+      <tbody>
+        {% for entry in uservotes %}
         <tr>
-          <td>Messi</td>
-          <td>2</td>
+          <td>{{entry.voter.username}}</td>
+          <td>{{entry.playervotename.playername}}</td>
+          <td><a href="#" class="tablebtn">Delete Response </a></td>
         </tr>
-      </table>
-    </div>
-
+        {% endfor %}
+    </table>
+  </div>
+</div>
 
 <div class="form-wrapper2">
   <form class="form">
     <div class="form-container">
-    <h2 class="register-head">Who is the best footballer in the world?</h2>
-    <input type="radio" name="option" value="option1" checked> Messi<br>
-    <input type="radio" name="option" value="option2"> Ronaldo<br>
-    <input type="radio" name="option" value="option3"> Neymar<br>
-    <input type="radio" name="option" value="option4" checked> Mbappe<br>
-    <input type="radio" name="option" value="option5" checked> Salah<br><br>
-    <label class="register-para" for="other"><b>Other</b></label>
-    <input type="text" placeholder="Other" name="other">
-    <button type="submit" class="form-button">Submit Response</button>
-</div>
+      <h2 class="register-head">Who is the best footballer in the world?</h2>
+      <input type="radio" name="option" value="option1" checked> Messi<br>
+      <input type="radio" name="option" value="option2"> Ronaldo<br>
+      <input type="radio" name="option" value="option3"> Neymar<br>
+      <input type="radio" name="option" value="option4" checked> Mbappe<br>
+      <input type="radio" name="option" value="option5" checked> Salah<br><br>
+      <label class="register-para" for="other"><b>Other</b></label>
+      <input type="text" placeholder="Other" name="other">
+      <button type="submit" class="form-button">Submit Response</button>
+    </div>
   </form>
-  </div>
+</div>
 
 
 {% endblock %}

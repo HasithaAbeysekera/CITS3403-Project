@@ -15,6 +15,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     admin = db.Column(db.Boolean, index=False, default=False)
     createdpolls = db.relationship('Polls', backref='creator', lazy='dynamic')
+    voter = db.relationship('PollVote', backref='voter', lazy='dynamic')
 
 
     def __repr__(self):
@@ -33,6 +34,7 @@ class Player(db.Model):
     nationality = db.Column(db.String(64), index=True, unique=False)
     club = db.Column(db.String(64), index=True, unique=False)
     presentpoll = db.relationship('PollPlayer', backref='playerentry', lazy='dynamic')
+    presentvote = db.relationship('PollVote', backref='playervotename', lazy='dynamic')
 
     def __repr__(self):
         return 'Player: {}, Club: {}, Country {}'.format(self.playername, self.club, self.nationality)

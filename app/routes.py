@@ -75,8 +75,9 @@ def polllist():
 
 def poll(pollid):
     thispoll = Polls.query.filter_by(pollid=pollid).first()
-    votes = PollPlayer.query.filter_by(pollid=pollid)
-    return render_template('poll.html', poll=thispoll, votes=votes)
+    playervotes = PollPlayer.query.filter_by(pollid=pollid)
+    uservotes = PollVote.query.filter_by(pollid=pollid)
+    return render_template('poll.html', poll=thispoll, votes=playervotes, uservotes=uservotes)
 
 @app.route('/pollcreate', methods=['GET', 'POST'])
 def pollcreate():
