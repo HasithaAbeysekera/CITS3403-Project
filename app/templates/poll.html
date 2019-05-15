@@ -2,42 +2,83 @@
 
 {% block content %}
 
+<div class="viewpoll-spacing">
+    <h2 class="center">Who is the best footballer in the world?</h2>
 
-<div class="container-table100">
-    <!-- <div class="wrap-table100"> -->
-    <div class="table100">
-        <table>
-            <thead>
-                <tr class="table100-head">
-                    <th class="column">Poll ID</th>
-                    <th class="column">Player Name</th>
-                    <th class="column">Votes</th>
-                    <th class="column"></th>
+  <!-- Polls section -->
+  <section class="view-polls">
+    <div class="content grid-2 center">
+      <div class="vertical-line">
+        <div class="table-container2">
+        <table class="table-content2">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Vote</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td>Samuel Martin</td>
+                <td>Ronaldo</td>
+                <td><a href="#" class="tablebtn">Delete Response </a></td>
+              </tr>
+              <tr>
+                <td>Samuel Martin</td>
+                <td>Messi</td>
+                <td><a href="#" class="tablebtn">Delete Response </a></td>
+              </tr>
+            </table>
+          </div>
 
-                </tr>
-            </thead>
-            <tbody>
-                {% for entry in votes %}
-                <tr id= poll.id >
-                    <td class="column">{{ entry.playerid }} </td>
-                    <td class="column">{{ entry.playerentry.playername }} </td>
-                    <td class="column">{{ entry.votecount }} </td>
-                    <td class="column"><a href="#" class="button">View Poll </a></td>
-                    <!-- <td class="column">  <a href="#" class="button"> Vote on Poll </a></td> -->
+      </div>
 
-                    <!-- <td class="column">iPhone X 64Gb Grey</td>
-                                        <td class="column">$999.00</td>
-                                        <td class="column">1</td>
-                                        <td class="column">$999.00</td> -->
-                </tr>
-                {% endfor %}
-        </table>
+      <div class="chart-container">
+        <canvas id="myChart"></canvas>
+     </div>
     </div>
-    <!-- </div> -->
+  </section>
+  </div>
+
+  <div class="table-container2">
+  <table class="table-content2">
+    
+    <thead>
+      <tr>
+        <th>Player Name</th>
+        <th>Votes</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>Ronaldo</td>
+          <td>3</td>
+
+        </tr>
+        <tr>
+          <td>Messi</td>
+          <td>2</td>
+        </tr>
+      </table>
+    </div>
+
+
+<div class="form-wrapper2">
+  <form class="form">
+    <div class="form-container">
+    <h2 class="register-head">Who is the best footballer in the world?</h2>
+    <input type="radio" name="option" value="option1" checked> Messi<br>
+    <input type="radio" name="option" value="option2"> Ronaldo<br>
+    <input type="radio" name="option" value="option3"> Neymar<br>
+    <input type="radio" name="option" value="option4" checked> Mbappe<br>
+    <input type="radio" name="option" value="option5" checked> Salah<br><br>
+    <label class="register-para" for="other"><b>Other</b></label>
+    <input type="text" placeholder="Other" name="other">
+    <button type="submit" class="form-button">Submit Response</button>
 </div>
-</body>
+  </form>
+  </div>
 
 
 {% endblock %}
-
-</html>

@@ -77,7 +77,7 @@ function validateForm(form) {
     form.password.focus();
     return false;
   }
-  
+
   field = /[0-9]/;
   if(!field.test(form.password.value)) {
     alert("Error: password must contain at least one number (0-9)!");
@@ -104,3 +104,41 @@ function validateForm(form) {
 }
 
 // Login Validation code ends
+
+//bar chart code
+
+let myChart = document.getElementById('myChart').getContext('2d');
+let barChart = new Chart(myChart, {
+  type:'bar',
+  data: {
+    labels:['Messi','Ronaldo','Neymar','Mbappe', 'Salah'],
+    datasets:[{
+      label:'Percentage vote',
+      data:[
+        42,
+        40,
+        12,
+        3,
+        3
+      ],
+      // backgroundColor:'#009879'
+      backgroundColor:[
+        'rgba(153,102,255,0.6)',
+        'rgba(75,192,192,0.6)',
+        'rgba(255,99,132,0.6)',
+        // 'rgba(255,159,64,0.6)',
+        'rgba(54,162,235,0.6)',
+        'rgba(255,206,86,0.6)'
+      ]
+    }]
+  },
+  options:{
+    maintainAspectRatio: false
+  }
+});
+
+function updateChart() {
+  chart.data.datasets[0].data = [45, 40, 9, 0, 3];
+
+  chart.update();
+}
