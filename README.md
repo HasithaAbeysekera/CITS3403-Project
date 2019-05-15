@@ -7,10 +7,15 @@ To run:
 2. install the following python packages:
 
 pip install flask
+
 pip install python-dotenv
+
 pip install flask-wtf
+
 pip install flask-sqlalchemy
+
 pip install flask-migrate
+
 pip install flask-login
 
 
