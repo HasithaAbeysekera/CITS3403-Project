@@ -29,7 +29,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class PlayerEntryForm(FlaskForm):
-    playername = StringField('PlayerName', validators=[DataRequired()])
+    playername = StringField('Player Name', validators=[DataRequired()])
     country = StringField('Country')
     club = StringField('Club')
     submit = SubmitField('Submit')
@@ -61,3 +61,4 @@ class PollVotingForm(FlaskForm):
         new = Player.query.filter_by(playername=newname.data).first()
         if new is None:
             raise ValidationError('This player does not exist.')
+        

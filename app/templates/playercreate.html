@@ -1,0 +1,39 @@
+{% extends "base2.html" %}
+
+{% block content %}
+
+<div class="form-wrapper">
+	<h2 class="login-header">Add Player</h2>
+
+	<form class="form" action="" method="post" onsubmit="return validateForm(this)">
+		<div class="login-icon fa-3x">
+			<i class="fas fa-users"></i>
+		</div>
+		<div class="form-container">
+			{{ form.hidden_tag() }}
+			<p>
+				<label class="register-para" for="username"><b>{{ form.playername.label }}</b></label><br>
+				{{ form.playername(size=32) }}<br>
+				{% for error in form.playername.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
+			</p>
+			<p>
+				<label class="register-para" for="password"><b>{{ form.country.label }}</b></label><br>
+				{{ form.country(size=32) }}<br>
+			</p>
+			<p>
+				<label class="register-para" for="password"><b>{{ form.club.label }}</b></label><br>
+				{{ form.club(size=32) }}<br>
+			</p>
+			<p>{{ form.submit() }}</p>
+		</div>
+
+		<div class="form-bottom">
+			<p class="register-para">Don't have an account? <a href="{{ url_for('register') }}">Register now</a>.</p>
+		</div>
+	</form>
+</div>
+
+
+{% endblock %}

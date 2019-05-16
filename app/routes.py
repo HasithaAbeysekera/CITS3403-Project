@@ -66,6 +66,22 @@ def admin():
 def unauthorised():
     return render_template('unauthorised.html', title='Error - You are unauthorised!')
 
+@app.route('/playerlist')
+def playerlist():
+    playerlist = Player.query.all()
+    return render_template('playerlist.html', playerlist=playerlist)    
+
+@app.route('/playercreate', methods=['GET', 'POST'])
+def playercreate():
+    form = PlayerEntryForm()
+    if form.validate_on_submit():
+        newplayer = Player(playername=form.playername.data, nationality=form.country.data, club=form.club.data)
+        db.session.add(newplayer)
+        db.session.commit()
+        flash('Congratulations, you have added a new plyer')
+        return redirect(url_for('playerlist'))
+    return render_template('playercreate.html', form=form)   
+
 @app.route('/polllist')
 def polllist():
     polls = Polls.query.all()
@@ -113,6 +129,16 @@ def pollcreate():
         flash('Congratulations, you have created a new poll')
         return redirect(url_for('index'))
     return render_template('pollcreate.html', form=form)
+
+@app.route('/delplayer/<playerid>')
+def delplayer(playerid):
+    if not current_user.admin:
+        return redirect(url_for('unauthorised'))
+    PollVote.query.filter_by(playerid=playerid).delete()
+    PollPlayer.query.filter_by(playerid=playerid).delete()
+    Player.query.filter_by(playerid=playerid).delete()
+    db.session.commit()
+    return redirect(url_for('playerlist'))
 
 @app.route('/delvote/<pollid>/<playerid>/<userid>')
 def delvote(pollid, playerid, userid):

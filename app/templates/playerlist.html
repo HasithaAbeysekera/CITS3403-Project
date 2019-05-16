@@ -1,0 +1,33 @@
+{% extends "base2.html" %}
+
+{% block content %}
+<div class="table-container">
+	<table class="table-content">
+		<thead>
+			<tr>
+				<th>Player Name</th>
+				<th>Country</th>
+				<th>Club</th>
+				{% if current_user.admin %}
+				<th>Delete Player?</th>
+				{%endif %}
+			</tr>
+		</thead>
+		<tbody>
+			{% for player in playerlist %}
+			<tr id=player.playerid>
+				<td>{{ player.playername }} </td>
+				<td>{{ player.nationality }} </td>
+				<td>{{ player.club }} </td>
+				{% if current_user.admin %}
+				<td><a href="{{ url_for('delplayer', playerid=player.playerid) }}" class="tablebtn">Delete Player</a></td>
+				{%endif %}
+			</tr>
+			{% endfor %}
+	</table>
+	<a href="{{ url_for('playercreate')}}" class="otherbtn">Add New Player </a>
+</div>
+
+
+
+{% endblock %}
