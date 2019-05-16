@@ -10,7 +10,9 @@
         <th>Poll Creator</th>
         <th>Poll Name</th>
         <th></th>
+        {% if current_user.admin %}
         <th></th>
+        {%endif %}
       </tr>
     </thead>
     <tbody>
@@ -20,7 +22,9 @@
         <td class="column">{{ poll.creator.username }}</td>
         <td>{{ poll.pollname }}</td>
         <td><a href="{{ url_for('poll', pollid=poll.pollid) }}" class="tablebtn">View Poll </a></td>
-        <td><a href="#" class="tablebtn">Delete Poll </a></td>
+        {% if current_user.admin %}
+        <td><a href="{{ url_for('delpoll', pollid=poll.pollid) }}" class="tablebtn">Delete Poll </a></td>
+        {%endif %}
       </tr>
       {% endfor %}
   </table>

@@ -55,9 +55,12 @@ def register():
 
 @app.route('/admin')
 def admin():
+    if current_user.is_anonymous:
+        return redirect(url_for('unauthorised'))
     if not current_user.admin:
         return redirect(url_for('unauthorised'))
-    return render_template('admin.html', title='Admin Page')
+    users = User.query.all()
+    return render_template('admin.html', title='Admin Page', users=users)
 
 @app.route('/unauthorised')
 def unauthorised():
@@ -69,23 +72,32 @@ def polllist():
     return render_template('polllist.html', polllist=polls)
 
 @app.route('/poll/<pollid>', methods=['GET', 'POST'])
-#def poll(pollid):
-##    poll = Polls.query.filter_by(pollid=pollid).first()
-#    return render_template('poll.html', poll=pollid)
-
 def poll(pollid):
     thispoll = Polls.query.filter_by(pollid=pollid).first()
     playervotes = PollPlayer.query.filter_by(pollid=pollid)
     uservotes = PollVote.query.filter_by(pollid=pollid)
+    if current_user.is_anonymous:
+        thisuservoted = None
+    else:
+        thisuservoted = PollVote.query.filter_by(pollid=pollid, userid=current_user.id).first()
     form = PollVotingForm()
     if form.validate_on_submit(): 
         newplayer = Player.query.filter_by(playername=form.newname.data).first()
         newpollplayer = PollPlayer.query.filter_by(pollid=pollid, playerid=newplayer.playerid).first()
+        if newpollplayer is None:
+            newpollplayer = PollPlayer(pollid=pollid, playerid=newplayer.playerid, votecount='1')
+            db.session.add(newpollplayer)
+            newvoteentry = PollVote(userid=current_user.id,pollid=pollid,playerid=newplayer.playerid)
+            db.session.add(newvoteentry)
+            db.session.commit()
+            return redirect(url_for('poll', pollid=pollid))
         newpollplayer.votecount += 1
         db.session.add(newpollplayer)
+        newvoteentry = PollVote(userid=current_user.id,pollid=pollid,playerid=newplayer.playerid)
+        db.session.add(newvoteentry)
         db.session.commit()
         return redirect(url_for('poll', pollid=pollid))
-    return render_template('poll.html', poll=thispoll, votes=playervotes, uservotes=uservotes, form=form)
+    return render_template('poll.html', poll=thispoll, votes=playervotes, uservotes=uservotes, form=form, uservoted=thisuservoted)
 
 @app.route('/pollcreate', methods=['GET', 'POST'])
 def pollcreate():
@@ -101,3 +113,52 @@ def pollcreate():
         flash('Congratulations, you have created a new poll')
         return redirect(url_for('index'))
     return render_template('pollcreate.html', form=form)
+
+@app.route('/delvote/<pollid>/<playerid>/<userid>')
+def delvote(pollid, playerid, userid):
+    if not current_user.admin:
+        return redirect(url_for('unauthorised'))
+    thisplayerVote = PollPlayer.query.filter_by(playerid=playerid, pollid=pollid).first()
+    thisplayerVote.votecount -= 1
+    thisvote = PollVote.query.filter_by(userid=userid, pollid=pollid, playerid=playerid).first()
+    db.session.delete(thisvote)
+    db.session.commit()
+    return redirect(url_for('poll', pollid=pollid))
+
+@app.route('/delpoll/<pollid>')
+def delpoll(pollid):
+    if not current_user.admin:
+        return redirect(url_for('unauthorised'))
+    Polls.query.filter_by(pollid=pollid).delete()
+    PollPlayer.query.filter_by(pollid=pollid).delete()
+    PollVote.query.filter_by(pollid=pollid).delete()
+    db.session.commit()
+    return redirect(url_for('polllist'))
+
+@app.route('/deluser/<userid>')
+def deluser(userid):
+    if current_user.is_anonymous:
+        return redirect(url_for('unauthorised'))
+    if not current_user.admin:
+        return redirect(url_for('unauthorised'))
+    if current_user.id == userid:
+        return redirect(url_for('unauthorised'))
+        ##go thru pollvotes first
+    uservotes = PollVote.query.filter_by(userid=userid).all()
+    for vote in uservotes:
+        playervote = PollPlayer.query.filter_by(pollid=vote.pollid, playerid=vote.playerid).first()
+        playervote.votecount -= 1
+        db.session.delete(vote)
+        db.session.commit()
+    
+    createdpolls = Polls.query.filter_by(creatorid=userid).all()
+    for poll in createdpolls:
+        votes = PollVote.query.filter_by(pollid=poll.pollid).all()
+        for onevote in votes:
+            db.session.delete(onevote)
+            db.session.commit()
+        db.session.delete(poll)
+        db.session.commit()
+    User.query.filter_by(id=userid).delete()
+    db.session.commit()
+    return redirect(url_for('admin'))

@@ -17,12 +17,12 @@ u1 = User(id='00000000', username = 'Hasi', email = 'hasi@test.com', admin = Tru
 u2 = User(id='11111111', username = 'Sam', email = 'sam@test.com', admin = True)
 u3 = User(id='22222222', username = 'Tom', email = 'tom@test.com', admin = False)
 #pws need to be set up in the shell
-#u1.set_password('Hasitest1')
-#u2.set_password('Samtest1')
-#u3.set_password('Tomtest1')
 db.session.add(u1)
 db.session.add(u2)
 db.session.add(u3)
+u1.set_password('Hasitest1')
+u2.set_password('Samtest1')
+u3.set_password('Tomtest1')
 
 #create Players
 p1= Player(playerid = '01', playername='Lionel Messi', nationality = 'Argentina', club = 'Barcelona')

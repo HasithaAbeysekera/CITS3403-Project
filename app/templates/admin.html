@@ -1,5 +1,26 @@
 {% extends "base2.html" %}
 
 {% block content %}
-   
+<div class="table-container">
+    <table class="table-content">
+        <thead>
+            <tr>
+                <th>UserID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Delete?</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr id=user.id>
+                <td>{{ user.id }} </td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td><a href="{{ url_for('deluser', userid=user.id) }}" class="tablebtn">Delete User </a></td>
+            </tr>
+            {% endfor %}
+    </table>
+    <a href="" class="otherbtn">Create New User </a>
+</div>
 {% endblock %}

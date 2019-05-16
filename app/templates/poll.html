@@ -44,7 +44,9 @@
         <tr>
           <th>Username</th>
           <th>Vote</th>
-          <th></th>
+          {% if current_user.admin %}
+          <th>Delete?</th>
+          {%endif %}
         </tr>
       </thead>
       <tbody>
@@ -52,13 +54,23 @@
         <tr>
           <td>{{entry.voter.username}}</td>
           <td>{{entry.playervotename.playername}}</td>
-          <td><a href="#" class="tablebtn">Delete Response </a></td>
+          {% if current_user.admin %}
+          <td><a href="{{ url_for('delvote', pollid=poll.pollid, playerid=entry.playervotename.playerid, userid=entry.voter.id )  }}" class="tablebtn">Delete Response </a></td>
+          {%endif %}
         </tr>
         {% endfor %}
     </table>
   </div>
 </div>
 
+{%if current_user.is_anonymous %}
+<h2> Please login to vote!</h2>
+{% else %}
+
+{% if uservoted %}
+<h2>You have already voted</h2>
+{% else%}
+<h2>please vote below</h2>
 <div class="form-wrapper2">
   <form class="form" action="" method="post" onsubmit="return validateForm(this)">
     <div class="form-container">
@@ -71,6 +83,12 @@
     </div>
   </form>
 </div>
+{% endif%}
+{% endif%}
+
+
+
+
 
 
 {% endblock %}
