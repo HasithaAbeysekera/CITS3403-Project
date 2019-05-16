@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Navbar</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+  integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel = "stylesheet" type="text/css" href = "style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,600">
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:500" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+</head>
+<body>
+
+    <!-- Header and Navbar -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">Soccer Polls</div>
+        <ul class="navbar-not-home">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="#">Polls</a></li>
+          <li><a href="#">Admin</a></li>
+          <li><a id="active" href="#">Login</a></li>
+        </ul>
+        <button class="navbar-toggle">
+          <span></span>
+        </button>
+      </nav>
+    </header>
+
+<div class="viewpoll-spacing">
+    <h2 class="center">Who is the best footballer in the world?</h2>
+
+  <!-- Polls section -->
+  <section class="view-polls">
+    <div class="content grid-2">
+      <div class="vertical-line">
+          <div class="table-container2">
+          <table class="table-content2" id="myTable">
+
+            <thead>
+              <tr>
+                <th>Player Name</th>
+                <th>Votes</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td>Messi</td>
+                  <td>9</td>
+                </tr>
+                <tr>
+                  <td>Ronaldo</td>
+                  <td>8</td>
+                </tr>
+                <tr>
+                  <td>Neymar</td>
+                  <td>3</td>
+                </tr>
+                <tr>
+                  <td>Mbappe</td>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <td>Salah</td>
+                  <td>1</td>
+                </tr>
+              </table>
+            </div>
+
+      </div>
+
+      <div class="chart-container">
+        <canvas id="myChart"></canvas>
+     </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="table-container2">
+  <table class="table-content2">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Vote</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>Samuel Martin</td>
+          <td>Ronaldo</td>
+          <td><a href="#" class="tablebtn">Delete Response </a></td>
+        </tr>
+        <tr>
+          <td>Samuel Martin</td>
+          <td>Messi</td>
+          <td><a href="#" class="tablebtn">Delete Response </a></td>
+        </tr>
+      </table>
+    </div>
+
+<div class="form-wrapper2">
+  <form class="form">
+    <div class="form-container">
+    <h2 class="register-head">Who is the best footballer in the world?</h2>
+    <input type="radio" name="option" value="option1" checked> Messi<br>
+    <input type="radio" name="option" value="option2"> Ronaldo<br>
+    <input type="radio" name="option" value="option3"> Neymar<br>
+    <input type="radio" name="option" value="option4"> Mbappe<br>
+    <input type="radio" name="option" value="option5"> Salah<br><br>
+    <button type="submit" class="form-button">Submit Response</button>
+
+
+</div>
+  </form>
+  </div>
+
+  <div class="form-wrapper2">
+    <form class="form">
+      <div class="form-container">
+      <h2 class="register-head">Add new entry</h2>
+
+  <label class="register-para" for="other"><b>New Entry</b></label>
+  <input type="text" placeholder="Name" name="other" required>
+  <input type="text" placeholder="Country" name="other" required>
+  <input type="text" placeholder="Club" name="other" required>
+  <button type="submit" class="form-button">Submit Response</button>
+
+
+  </div>
+    </form>
+    </div>
+
+
+
+  <footer class="dark-background">
+    <p id="demo">  </p>
+    <p id="demo2">  </p>
+  </footer>
+
+  <script src="main.js">
+  </script>
+
+</body>
+</html>
