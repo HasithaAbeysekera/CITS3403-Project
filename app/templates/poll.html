@@ -55,7 +55,9 @@
           <td>{{entry.voter.username}}</td>
           <td>{{entry.playervotename.playername}}</td>
           {% if current_user.admin %}
-          <td><a href="{{ url_for('delvote', pollid=poll.pollid, playerid=entry.playervotename.playerid, userid=entry.voter.id )  }}" class="tablebtn">Delete Response </a></td>
+          <td><a
+              href="{{ url_for('delvote', pollid=poll.pollid, playerid=entry.playervotename.playerid, userid=entry.voter.id )  }}"
+              class="tablebtn">Delete Response </a></td>
           {%endif %}
         </tr>
         {% endfor %}
@@ -66,23 +68,37 @@
 {%if current_user.is_anonymous %}
 <h2> Please login to vote!</h2>
 {% else %}
-
 {% if uservoted %}
 <h2>You have already voted</h2>
 {% else%}
 <h2>please vote below</h2>
+
 <div class="form-wrapper2">
   <form class="form" action="" method="post" onsubmit="return validateForm(this)">
     <div class="form-container">
       <h2 class="register-head">Submit your vote below!</h2><br>
       <label class="register-para" for="other"><b>Other</b></label><br>
       {{ form.hidden_tag() }}
-      {{ form.newname.label }}<br>
-      {{ form.newname(size=32) }}<br>
+      {{form.entries}}<br>
       <p>{{ form.submit() }}</p>
     </div>
   </form>
 </div>
+
+<div class="form-wrapper2">
+    <form class="form" action="" method="post" onsubmit="return validateForm(this)">
+      <div class="form-container">
+        <h2 class="register-head">New player add</h2><br>
+        <label class="register-para" for="other"><b>Other</b></label><br>
+        {{ form2.hidden_tag() }}
+        {{form2.newname.label}}<br>
+        {{form2.newname(size=32)}}<br>
+        <p>{{ form2.submit() }}</p>
+      </div>
+    </form>
+  </div>
+
+
 {% endif%}
 {% endif%}
 

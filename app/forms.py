@@ -54,11 +54,14 @@ class PollCreateForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class PollVotingForm(FlaskForm):
-    newname = StringField('Player Name')
+    entries = RadioField('Options', coerce=int,choices=[], )
     submit = SubmitField('Submit')
 
+
+class PollNewEntryForm(FlaskForm):
+    newname = StringField('Player Name')
+    submit = SubmitField('Submit')
     def validate_dupes(self, newname):
         new = Player.query.filter_by(playername=newname.data).first()
         if new is None:
             raise ValidationError('This player does not exist.')
-        
