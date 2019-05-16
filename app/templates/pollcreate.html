@@ -13,7 +13,6 @@
             {{ form.hidden_tag() }}
             <p>
                 <label class="register-para" for="username"><b>{{ form.pollname.label }}</b></label><br>
-
                 {{ form.pollname(size=32) }}<br>
                 {% for error in form.pollname.errors %}
                 <span style="color: red;">[{{ error }}]</span>
@@ -21,9 +20,7 @@
             </p>
             <p>
                 <label class="register-para" for="password"><b>{{ form.player1.label }}</b></label><br>
-
                 {{ form.player1(size=32) }}<br>
-                
             </p>
             <p>{{ form.submit() }}</p>
         </div>

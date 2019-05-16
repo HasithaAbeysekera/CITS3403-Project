@@ -19,7 +19,7 @@
           </thead>
           <tbody>
             {% for entry in votes %}
-            <tr id=entry.palyerid>
+            <tr id=entry.playerid>
               <td>{{ entry.playerentry.playername }} </td>
               <td>{{ entry.votecount }}</td>
             </tr>
@@ -60,17 +60,14 @@
 </div>
 
 <div class="form-wrapper2">
-  <form class="form">
+  <form class="form" action="" method="post" onsubmit="return validateForm(this)">
     <div class="form-container">
-      <h2 class="register-head">Who is the best footballer in the world?</h2>
-      <input type="radio" name="option" value="option1" checked> Messi<br>
-      <input type="radio" name="option" value="option2"> Ronaldo<br>
-      <input type="radio" name="option" value="option3"> Neymar<br>
-      <input type="radio" name="option" value="option4" checked> Mbappe<br>
-      <input type="radio" name="option" value="option5" checked> Salah<br><br>
-      <label class="register-para" for="other"><b>Other</b></label>
-      <input type="text" placeholder="Other" name="other">
-      <button type="submit" class="form-button">Submit Response</button>
+      <h2 class="register-head">Submit your vote below!</h2><br>
+      <label class="register-para" for="other"><b>Other</b></label><br>
+      {{ form.hidden_tag() }}
+      {{ form.newname.label }}<br>
+      {{ form.newname(size=32) }}<br>
+      <p>{{ form.submit() }}</p>
     </div>
   </form>
 </div>

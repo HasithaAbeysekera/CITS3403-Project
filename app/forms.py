@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, RadioField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
-from app.models import User, Player, Polls
+from app.models import User, Player, Polls, PollPlayer, PollVote
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -34,7 +34,7 @@ class PlayerEntryForm(FlaskForm):
     club = StringField('Club')
     submit = SubmitField('Submit')
 
-    def valudate_playername_dupe(self, playername):
+    def validate_playername_dupe(self, playername):
         name = Player.query.filter_by(playername=playername.data).first()
         if name is not None:
             raise ValidationError('This player already exists.')
@@ -52,3 +52,12 @@ class PollCreateForm(FlaskForm):
     #player4 = SelectField
     #player5 = SelectField
     submit = SubmitField('Submit')
+
+class PollVotingForm(FlaskForm):
+    newname = StringField('Player Name')
+    submit = SubmitField('Submit')
+
+    def validate_dupes(self, newname):
+        new = Player.query.filter_by(playername=newname.data).first()
+        if new is None:
+            raise ValidationError('This player does not exist.')

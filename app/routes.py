@@ -8,7 +8,7 @@ from flask_login import login_required
 from flask import request
 from werkzeug.urls import url_parse
 from app import db
-from app.forms import RegistrationForm, PlayerEntryForm, PollCreateForm
+from app.forms import RegistrationForm, PlayerEntryForm, PollCreateForm, PollVotingForm
 
 
 @app.route('/')
@@ -68,7 +68,7 @@ def polllist():
     polls = Polls.query.all()
     return render_template('polllist.html', polllist=polls)
 
-@app.route('/poll/<pollid>')
+@app.route('/poll/<pollid>', methods=['GET', 'POST'])
 #def poll(pollid):
 ##    poll = Polls.query.filter_by(pollid=pollid).first()
 #    return render_template('poll.html', poll=pollid)
@@ -77,7 +77,15 @@ def poll(pollid):
     thispoll = Polls.query.filter_by(pollid=pollid).first()
     playervotes = PollPlayer.query.filter_by(pollid=pollid)
     uservotes = PollVote.query.filter_by(pollid=pollid)
-    return render_template('poll.html', poll=thispoll, votes=playervotes, uservotes=uservotes)
+    form = PollVotingForm()
+    if form.validate_on_submit(): 
+        newplayer = Player.query.filter_by(playername=form.newname.data).first()
+        newpollplayer = PollPlayer.query.filter_by(pollid=pollid, playerid=newplayer.playerid).first()
+        newpollplayer.votecount += 1
+        db.session.add(newpollplayer)
+        db.session.commit()
+        return redirect(url_for('poll', pollid=pollid))
+    return render_template('poll.html', poll=thispoll, votes=playervotes, uservotes=uservotes, form=form)
 
 @app.route('/pollcreate', methods=['GET', 'POST'])
 def pollcreate():

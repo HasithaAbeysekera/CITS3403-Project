@@ -44,12 +44,9 @@
             {% for error in form.password2.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-            <!--
-            <input type="password" placeholder="Repeat Password" name="passwordrepeat" required>
-            -->
             <hr>
             {{ form.submit() }}
-            <!--<button type="submit" class="form-button">Register</button>-->
+            
         </div>
 
         <div class="form-bottom">
