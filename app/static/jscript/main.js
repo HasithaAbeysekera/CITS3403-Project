@@ -107,19 +107,64 @@ function validateForm(form) {
 
 //bar chart code
 
+var table = document.getElementById("myTable"), sumVal = 0;
+// var players = [];
+for (var i = 1; i < table.rows.length; i++) {
+  sumVal = sumVal + parseInt(table.rows[i].cells[1].innerHTML);
+  // players += table.rows[i].cells[0].innerHTML;
+}
+var player1 = table.rows[1].cells[0].innerHTML;
+var player2 = table.rows[2].cells[0].innerHTML;
+var player3 = table.rows[3].cells[0].innerHTML;
+var player4 = table.rows[4].cells[0].innerHTML;
+var player5 = table.rows[5].cells[0].innerHTML;
+
+var votes1 = table.rows[1].cells[1].innerHTML;
+var votes2 = table.rows[2].cells[1].innerHTML;
+var votes3 = table.rows[3].cells[1].innerHTML;
+var votes4 = table.rows[4].cells[1].innerHTML;
+var votes5 = table.rows[5].cells[1].innerHTML;
+
+var percentageVotes1 = (votes1 / sumVal) * 100;
+var percentageVotes2 = (votes2 / sumVal) * 100;
+var percentageVotes3 = (votes3 / sumVal) * 100;
+var percentageVotes4 = (votes4 / sumVal) * 100;
+var percentageVotes5 = (votes5 / sumVal) * 100;
+
+// console.log(sumVal);
+// console.log(players);
+// console.log(player1);
+// console.log(player2);
+// console.log(player3);
+// console.log(player4);
+// console.log(player5);
+// console.log(votes1);
+// console.log(votes2);
+// console.log(votes3);
+// console.log(votes4);
+// console.log(votes5);
+// console.log(percentageVotes1);
+// console.log(percentageVotes2);
+// console.log(percentageVotes3);
+// console.log(percentageVotes4);
+// console.log(percentageVotes5);
+
+
+
+
 let myChart = document.getElementById('myChart').getContext('2d');
 let barChart = new Chart(myChart, {
   type:'bar',
   data: {
-    labels:['Messi','Ronaldo','Neymar','Mbappe', 'Salah'],
+    labels:[player1,player2,player3,player4, player5],
     datasets:[{
       label:'Percentage vote',
       data:[
-        42,
-        40,
-        12,
-        3,
-        3
+        percentageVotes1,
+        percentageVotes2,
+        percentageVotes3,
+        percentageVotes4,
+        percentageVotes5
       ],
       // backgroundColor:'#009879'
       backgroundColor:[
@@ -142,3 +187,10 @@ function updateChart() {
 
   chart.update();
 }
+
+
+
+// loop through HTML table
+// 5 global variables for percentages of player votes found by
+// looping through column and summing the votes (1 global variable for that)
+// divided by specific players votes (another 5 global varaiables)
