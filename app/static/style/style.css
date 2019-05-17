@@ -348,24 +348,15 @@ hr {
   overflow: hidden;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
   width: 100%;
-  min-width: 500px;
+  /* min-width: 500px; */
 }
 
-.table-content thead tr,
-.table-content2 thead tr td {
+.table-content thead tr {
   background-color: #009879;
   text-align: left;
   color: white;
   font-weight: bold;
   height: 4rem;
-}
-
-.chart-container{
-   /* height:400px; */
-   /* width:500px; */
-   height: 300px !important;
-   width: 400px !important;
-
 }
 
 .table-content tbody tr {
@@ -396,10 +387,6 @@ hr {
   color: white;
   display: inline-block;
   text-decoration: none;
-}
-
-.viewpoll-spacing {
-  padding: 7rem 0;
 }
 
 .table-container2 {
@@ -461,6 +448,20 @@ hr {
   display: inline-block;
   text-decoration: none;
   margin-bottom: auto;
+}
+
+/* table styling finish  */
+
+.viewpoll-spacing {
+  padding: 7rem 0;
+}
+
+.chart-container{
+   /* height:400px; */
+   /* width:500px; */
+   height: 300px !important;
+   width: 400px !important;
+
 }
 
 @media screen and (max-width: 1165px) {

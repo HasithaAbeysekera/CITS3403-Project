@@ -12,38 +12,39 @@
             <p class="register-para">Please fill in this form to create an account.</p>
             <hr>
             {{ form.hidden_tag() }}
-            <label class="register-para" for="username"><b>{{ form.username.label }}</b></label><br>
-            {{ form.username(size=32) }}<br>
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
+            <label class="register-para" for="username"><b>{{ form.username.label }}</b></label><br>
+            {{ form.username(size=32) }}<br>
+            
             <!--
             <input type="text" placeholder="Enter Username" name="username" required>
             -->
-
-            <label class="register-para" for="email"><b>{{ form.email.label }}</b></label><br>
-            {{ form.email(size=64) }}<br>
             {% for error in form.email.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
+            <label class="register-para" for="email"><b>{{ form.email.label }}</b></label><br>
+            {{ form.email(size=64) }}<br>
+            
             <!--
             <input type="email" placeholder="Enter Email" name="email" required>
             -->
-
-            <label class="register-para" for="password"><b>Password</b></label><br>
-            {{ form.password(size=32) }}<br>
             {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
+            <label class="register-para" for="password"><b>Password</b></label><br>
+            {{ form.password(size=32) }}<br>
+            
             <!--
             <input type="password" placeholder="Enter Password" name="password" required>
             -->
-
-            <label class="register-para" for="passwordrepeat"><b>Repeat Password</b></label><br>
-            {{ form.password2(size=32) }}<br>
             {% for error in form.password2.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
+            <label class="register-para" for="passwordrepeat"><b>Repeat Password</b></label><br>
+            {{ form.password2(size=32) }}<br>
+            
             <hr>
             {{ form.submit() }}
             

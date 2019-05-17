@@ -12,9 +12,9 @@
 		<div class="form-container">
 			{{ form.hidden_tag() }}
 			<p>
-				<label class="register-para" for="username"><b>{{ form.playername.label }}</b></label><br>
-				{{ form.playername(size=32) }}<br>
-				{% for error in form.playername.errors %}
+				<label class="register-para" for="username"><b>{{ form.thisplayername.label }}</b></label><br>
+				{{ form.thisplayername(size=32) }}<br>
+				{% for error in form.thisplayername.errors %}
 				<span style="color: red;">[{{ error }}]</span>
 				{% endfor %}
 			</p>

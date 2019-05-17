@@ -7,29 +7,30 @@
 
   <!-- Polls section -->
   <section class="view-polls">
-    <div class="content grid-2 center">
-      <!--insert table below-->
-      <div class="table-container2">
-        <table class="table-content2">
-          <thead>
-            <tr>
-              <th>Player Name</th>
-              <th>Votes</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for entry in votes %}
-            <tr id=entry.playerid>
-              <td>{{ entry.playerentry.playername }} </td>
-              <td>{{ entry.votecount }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+    <div class="content grid-2">
+      <div class="vertical-line">
+        <div class="table-container2">
+          <table class="table-content2" id="myTable">
+
+            <thead>
+              <tr>
+                <th>Player Name</th>
+                <th>Votes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for entry in votes %}
+              <tr>
+                <td>{{ entry.playerentry.playername }} </td>
+                <td>{{ entry.votecount }}</td>
+              </tr>
+              {% endfor %}
+          </table>
+        </div>
+        <div class="chart-container">
+          <canvas id="myChart"></canvas>
+        </div>
       </div>
-      <div class="chart-container">
-        <canvas id="myChart"></canvas>
-      </div>
-    </div>
   </section>
 </div>
 
@@ -37,33 +38,29 @@
 
 
 
-<div class="vertical-line">
-  <div class="table-container2">
-    <table class="table-content2">
-      <thead>
-        <tr>
-          <th>Username</th>
-          <th>Vote</th>
-          {% if current_user.admin %}
-          <th>Delete?</th>
-          {%endif %}
-        </tr>
-      </thead>
-      <tbody>
-        {% for entry in uservotes %}
-        <tr>
-          <td>{{entry.voter.username}}</td>
-          <td>{{entry.playervotename.playername}}</td>
-          {% if current_user.admin %}
-          <td><a
-              href="{{ url_for('delvote', pollid=poll.pollid, playerid=entry.playervotename.playerid, userid=entry.voter.id )  }}"
-              class="tablebtn">Delete Response </a></td>
-          {%endif %}
-        </tr>
-        {% endfor %}
-    </table>
-  </div>
+{% if current_user.admin %}
+<div class="table-container2">
+  <table class="table-content2">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Vote</th>      
+        <th>Delete?</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entry in uservotes %}
+      <tr>
+        <td>{{entry.voter.username}}</td>
+        <td>{{entry.playervotename.playername}}</td>
+        <td><a
+            href="{{ url_for('delvote', pollid=poll.pollid, playerid=entry.playervotename.playerid, userid=entry.voter.id )  }}"
+            class="tablebtn">Delete Response </a></td>
+      </tr>
+      {% endfor %}
+  </table>
 </div>
+{%endif %}
 
 {%if current_user.is_anonymous %}
 <h2> Please login to vote!</h2>
@@ -86,18 +83,38 @@
 </div>
 
 <div class="form-wrapper2">
+  <form class="form" action="" method="post" onsubmit="return validateForm(this)">
+    <div class="form-container">
+      <h2 class="register-head">New player add</h2><br>
+      <label class="register-para" for="other"><b>Other</b></label><br>
+      {{ form2.hidden_tag() }}
+      {{form2.newname.label}}<br>
+      {{form2.newname(size=32)}}<br>
+      <p>{{ form2.submit() }}</p>
+    </div>
+  </form>
+</div>
+
+{% if not (numvotes >= 5) %}
+<div class="form-wrapper2">
     <form class="form" action="" method="post" onsubmit="return validateForm(this)">
       <div class="form-container">
-        <h2 class="register-head">New player add</h2><br>
-        <label class="register-para" for="other"><b>Other</b></label><br>
-        {{ form2.hidden_tag() }}
-        {{form2.newname.label}}<br>
-        {{form2.newname(size=32)}}<br>
-        <p>{{ form2.submit() }}</p>
+        <h2 class="register-head">Add new response to poll. Please choose from dropdown below</h2><br>
+        <label class="register-para" for="other"><b>Player to add</b></label><br>
+        {{ form3.hidden_tag() }}<br>
+        {% for error in form3.select.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        {{ form3.select.label }}<br>
+        {{ form3.select }}<br>
+        {% for error in form3.submit.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        <p>{{ form3.submit() }}</p>
       </div>
     </form>
   </div>
-
+  {% endif%}
 
 {% endif%}
 {% endif%}
