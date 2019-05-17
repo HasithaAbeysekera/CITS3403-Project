@@ -30,7 +30,7 @@ class User(UserMixin, db.Model):
 class Player(db.Model):
 
     playerid = db.Column(db.Integer, primary_key=True)
-    playername = db.Column(db.String(128), index=True, unique=False)
+    playername = db.Column(db.String(128), index=True, unique=True)
     nationality = db.Column(db.String(64), index=True, unique=False)
     club = db.Column(db.String(64), index=True, unique=False)
     presentpoll = db.relationship('PollPlayer', backref='playerentry', lazy='dynamic')
@@ -53,17 +53,11 @@ class PollVote(db.Model):
     playerid = db.Column(db.Integer, db.ForeignKey('player.playerid'))
 
 
-class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(140))
-    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
-    def __repr__(self):
-        return '<Post {}>'.format(self.body)
-
 class PollPlayer(db.Model):
     pollplayerid = db.Column(db.Integer, primary_key=True)
     pollid =  db.Column(db.Integer, db.ForeignKey('polls.pollid'))
     playerid = db.Column(db.Integer, db.ForeignKey('player.playerid'))
     votecount = db.Column(db.Integer)
+
+    def check_poll_dupe(self, thispollid, thisplayerid):
+        return PollPlayer.query.filter_by(pollid=thispollid, playerid=thisplayerid).first()

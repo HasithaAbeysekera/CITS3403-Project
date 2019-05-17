@@ -12,18 +12,25 @@
 		<div class="form-container">
 			{{ form.hidden_tag() }}
 			<p>
-				<label class="register-para" for="username"><b>{{ form.thisplayername.label }}</b></label><br>
-				{{ form.thisplayername(size=32) }}<br>
-				{% for error in form.thisplayername.errors %}
+				{% for error in form.playername.errors %}
 				<span style="color: red;">[{{ error }}]</span>
 				{% endfor %}
+				<label class="register-para" for="playername"><b>{{ form.playername.label }}</b></label><br>
+				{{ form.playername(size=32) }}<br>
+
 			</p>
 			<p>
-				<label class="register-para" for="password"><b>{{ form.country.label }}</b></label><br>
+				{% for error in form.country.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
+				<label class="register-para" for="country"><b>{{ form.country.label }}</b></label><br>
 				{{ form.country(size=32) }}<br>
 			</p>
 			<p>
-				<label class="register-para" for="password"><b>{{ form.club.label }}</b></label><br>
+				{% for error in form.club.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
+				<label class="register-para" for="club"><b>{{ form.club.label }}</b></label><br>
 				{{ form.club(size=32) }}<br>
 			</p>
 			<p>{{ form.submit() }}</p>

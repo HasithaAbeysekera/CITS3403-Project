@@ -1,6 +1,6 @@
 import unittest, os
 from app import app, db
-from app.models import User, Post
+from app.models import User, Polls, PollVote, PollPlayer, Player
 
 class UserModelCase(unittest.TestCase):
     def setUp(self):
@@ -28,17 +28,10 @@ class UserModelCase(unittest.TestCase):
         self.assertTrue(u.check_password('hasitest'))
 
     def test_admin(self):
-        #u1 = User(id='00000000', username = 'Hasi', email = 'hasi@test.com', admin = True)
-        #u2 = User(id='11111111', username = 'Sam', email = 'sam@test.com', admin = True)
-        #u3 = User(id='22222222', username = 'Tom', email = 'tom@test.com', admin = False)
-        #db.session.add(u1)
-        #db.session.add(u2)
-        #db.session.add(u3)
-        #db.session.commit()
-        #u1 = User(username='Hasi')
-        #u3 = User(username ='Tom')
-        self.assertFalse(u3.admin)
+        u1 = User.query.filter_by(username='Hasi').first()
+        u3 = User.query.filter_by(username='Tom').first()
         self.assertTrue(u1.admin)
+        self.assertFalse(u3.admin)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

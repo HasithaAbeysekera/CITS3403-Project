@@ -12,20 +12,19 @@
         <div class="form-container">
             {{ form.hidden_tag() }}
             <p>
-                <label class="register-para" for="username"><b>{{ form.username.label }}</b></label><br>
-
-                {{ form.username(size=32) }}<br>
                 {% for error in form.username.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
+                <label class="register-para" for="username"><b>{{ form.username.label }}</b></label><br>
+                {{ form.username(size=32) }}<br>
+
             </p>
             <p>
-                <label class="register-para" for="password"><b>{{ form.password.label }}</b></label><br>
-
-                {{ form.password(size=32) }}<br>
                 {% for error in form.password.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
+                <label class="register-para" for="password"><b>{{ form.password.label }}</b></label><br>
+                {{ form.password(size=32) }}<br>
             </p>
             <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
             <p>{{ form.submit() }}</p>

@@ -76,7 +76,7 @@ def playerlist():
 def playercreate():
     form = PlayerEntryForm()
     if form.validate_on_submit():
-        newplayer = Player(playername=form.thisplayername.data, nationality=form.country.data, club=form.club.data)
+        newplayer = Player(playername=form.playername.data, nationality=form.country.data, club=form.club.data)
         db.session.add(newplayer)
         db.session.commit()
         flash('Congratulations, you have added a new plyer')
@@ -91,7 +91,7 @@ def polllist():
 @app.route('/poll/<pollid>', methods=['GET', 'POST'])
 def poll(pollid):
     thispoll = Polls.query.filter_by(pollid=pollid).first()
-    playervotes = PollPlayer.query.filter_by(pollid=pollid)
+    playervotes = PollPlayer.query.filter_by(pollid=pollid).all()
     uservotes = PollVote.query.filter_by(pollid=pollid)
     optionscount = PollPlayer.query.filter_by(pollid=pollid).count()
     if current_user.is_anonymous:
@@ -135,16 +135,34 @@ def poll(pollid):
 @login_required
 def pollcreate():
     form = PollCreateForm()
+    # choices = [0,  "-- select an option --"]
+    # choices = []
+    
+    form.select1.choices = [(option.playerid, option.playername) for option in Player.query.all()]
+    form.select2.choices = [(option.playerid, option.playername) for option in Player.query.all()]
+    form.select3.choices = [(option.playerid, option.playername) for option in Player.query.all()]
+    
     if form.validate_on_submit():
         if current_user.is_anonymous:
             return redirect(url_for('unauthorised'))
         newpoll = Polls(pollname=form.pollname.data, creatorid=current_user.id)
-        newpollplayer1 = PollPlayer(pollid=newpoll.pollid, playerid = form.player1.data.playerid, votecount ='0')
         db.session.add(newpoll)
         db.session.commit()
-        newpollplayer1 = PollPlayer(pollid=newpoll.pollid, playerid = form.player1.data.playerid, votecount ='0')
-        db.session.add(newpollplayer1)
+        if form.select1.data:
+            newpollplayer1 = PollPlayer(pollid=newpoll.pollid, playerid = form.select1.data, votecount ='0')
+            db.session.add(newpollplayer1)
+            db.session.commit()
         db.session.commit()
+        if not form.select1.data == form.select2.data:
+            newpollplayer2 = PollPlayer(pollid=newpoll.pollid, playerid = form.select2.data, votecount ='0')
+            db.session.add(newpollplayer2)
+            db.session.commit()
+        if (form.select3.data == form.select1.data) or (form.select3.data == form.select2.data):
+            db.session.commit()
+        else: 
+            newpollplayer3 = PollPlayer(pollid=newpoll.pollid, playerid = form.select3.data, votecount ='0')
+            db.session.add(newpollplayer3)
+            db.session.commit()
         flash('Congratulations, you have created a new poll')
         return redirect(url_for('polllist'))
     return render_template('pollcreate.html', form=form)

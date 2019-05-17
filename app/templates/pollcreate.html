@@ -1,36 +1,6 @@
 {% extends "base2.html" %}
 
 {% block content %}
-<!--
-<div class="form-wrapper">
-    <h2 class="login-header">Poll Creation</h2>
-
-    <form class="form" action="" method="post" onsubmit="return validateForm(this)">
-        <div class="login-icon fa-3x">
-            <i class="fas fa-users"></i>
-        </div>
-        <div class="form-container">
-            {{ form.hidden_tag() }}
-            <p>
-                <label class="register-para" for="username"><b>{{ form.pollname.label }}</b></label><br>
-                {{ form.pollname(size=32) }}<br>
-                {% for error in form.pollname.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                <label class="register-para" for="password"><b>{{ form.player1.label }}</b></label><br>
-                {{ form.player1(size=32) }}<br>
-            </p>
-            <p>{{ form.submit() }}</p>
-        </div>
-
-        <div class="form-bottom">
-            <p class="register-para">Don't have an account? <a href="{{ url_for('register') }}">Register now</a>.</p>
-        </div>
-    </form>
-</div>
--->
 
 <div class="form-wrapper">
     <form class="form" action="" method="post" onsubmit="return validateForm(this)">
@@ -42,14 +12,27 @@
             {% for error in form.pollname.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-            <label class="register-para" for="username"><b>{{ form.pollname.label }}</b></label><br>
+            <label class="register-para" for="pollname"><b>{{ form.pollname.label }}</b></label><br>
             {{ form.pollname(size=32) }}<br>
 
-            {% for error in form.player1.errors %}
+            {% for error in form.select1.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-            <label class="register-para" for="pollname"><b>{{ form.player1.label }}</b></label><br>
-            {{ form.player1(size=32) }}<br>
+            <label class="register-para" for="select1"><b>{{ form.select1.label }}</b></label><br>
+            {{ form.select1}}<br>
+
+            {% for error in form.select2.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            <label class="register-para" for="select2"><b>{{ form.select2.label }}</b></label><br>
+            {{ form.select2 }}<br>
+            
+            {% for error in form.select3.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            <label class="register-para" for="select3"><b>{{ form.select3.label }}</b></label><br>
+            {{ form.select3 }}<br>
+            
             <hr>
             <button type="submit" class="form-button">{{ form.submit() }}</button>
         </div>

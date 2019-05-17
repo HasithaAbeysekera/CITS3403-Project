@@ -28,15 +28,12 @@
           </table>
         </div>
       </div>
-        <div class="chart-container">
-          <canvas id="myChart"></canvas>
-        </div>
+      <div class="chart-container">
+        <canvas id="myChart"></canvas>
       </div>
+    </div>
   </section>
 </div>
-
-
-
 
 
 {% if current_user.admin %}
@@ -45,7 +42,7 @@
     <thead>
       <tr>
         <th>Username</th>
-        <th>Vote</th>      
+        <th>Vote</th>
         <th>Delete?</th>
       </tr>
     </thead>
@@ -86,24 +83,25 @@
 
 {% if not (numvotes >= 10) %}
 <div class="form-wrapper2">
-    <form class="form" action="" method="post" onsubmit="return validateForm(this)">
-      <div class="form-container">
-        <h2 class="register-head">Add a new response to the poll. Please choose from dropdown below. Each poll can only have 5 possible candidates</h2><br>
-        <label class="register-para" for="other"><b>Player to add</b></label><br>
-        {{ form3.hidden_tag() }}<br>
-        {% for error in form3.select.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        {{ form3.select.label }}<br>
-        {{ form3.select }}<br>
-        {% for error in form3.submit.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        <p>{{ form3.submit() }}</p>
-      </div>
-    </form>
-  </div>
-  {% endif%}
+  <form class="form" action="" method="post" onsubmit="return validateForm(this)">
+    <div class="form-container">
+      <h2 class="register-head">Add a new response to the poll. Please choose from dropdown below. Each poll can only
+        have 5 possible candidates</h2><br>
+      <label class="register-para" for="other"><b>Player to add</b></label><br>
+      {{ form3.hidden_tag() }}<br>
+      {% for error in form3.select.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+      {{ form3.select.label }}<br>
+      {{ form3.select }}<br>
+      {% for error in form3.submit.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+      <p>{{ form3.submit() }}</p>
+    </div>
+  </form>
+</div>
+{% endif%}
 
 {% endif%}
 {% endif%}

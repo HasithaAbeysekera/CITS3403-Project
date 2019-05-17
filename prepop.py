@@ -1,6 +1,6 @@
 import os
 from app import app, db
-from app.models import User, Post, Player, Polls, PollVote, PollPlayer
+from app.models import User, Player, Polls, PollVote, PollPlayer
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = \
@@ -126,9 +126,9 @@ pp4 = PollPlayer(pollplayerid ='4', pollid='2', playerid='6', votecount ='1')
 pp5 = PollPlayer(pollplayerid ='5', pollid='2', playerid='7', votecount ='1')
 pp6 = PollPlayer(pollplayerid ='6', pollid='2', playerid='9', votecount ='1')
 
-pp7 = PollPlayer(pollplayerid ='7', pollid='3', playerid='12', votecount ='1')
-pp8 = PollPlayer(pollplayerid ='8', pollid='3', playerid='15', votecount ='1')
-pp9 = PollPlayer(pollplayerid ='9', pollid='3', playerid='19', votecount ='1')
+pp7 = PollPlayer(pollplayerid ='7', pollid='3', playerid='12', votecount ='3')
+pp8 = PollPlayer(pollplayerid ='8', pollid='3', playerid='15', votecount ='0')
+pp9 = PollPlayer(pollplayerid ='9', pollid='3', playerid='19', votecount ='0')
 
 db.session.add(pp1)
 db.session.add(pp2)
