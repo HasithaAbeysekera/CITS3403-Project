@@ -13,7 +13,6 @@ from app.forms import RegistrationForm, PlayerEntryForm, PollCreateForm, PollNew
 
 @app.route('/')
 @app.route('/index')
-#@login_required
 def index():
     return render_template('index.html', title='Home')
 
@@ -54,6 +53,7 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 @app.route('/admin')
+@login_required
 def admin():
     if current_user.is_anonymous:
         return redirect(url_for('unauthorised'))
@@ -72,6 +72,7 @@ def playerlist():
     return render_template('playerlist.html', playerlist=playerlist)    
 
 @app.route('/playercreate', methods=['GET', 'POST'])
+@login_required
 def playercreate():
     form = PlayerEntryForm()
     if form.validate_on_submit():
@@ -99,16 +100,13 @@ def poll(pollid):
         thisuservoted = PollVote.query.filter_by(pollid=pollid, userid=current_user.id).first()
     form = PollVotingForm()
     form.entries.choices= [(player.playerid, player.playerentry.playername) for player in PollPlayer.query.filter_by(pollid=pollid).all()]
-    form2 = PollNewEntryForm()
     form3 = PollNewEntryDropDown()
     form3.select.choices = [(option.playerid, option.playername) for option in Player.query.all()]
-    # form.entries.choices = [(1,'Messi'), (2, 'Ronaldo')]
     if form.validate_on_submit():
         if current_user.is_anonymous or thisuservoted:
             return redirect(url_for('unauthorised'))
         if form.entries.data:    
             formplayerid = form.entries.data
-            # print (form.example.data)
             votedplayer = PollPlayer.query.filter_by(pollid=pollid, playerid=form.entries.data).first()
             votedplayer.votecount += 1
             newvote = PollVote(userid=current_user.id, pollid=pollid, playerid=formplayerid)
@@ -116,8 +114,9 @@ def poll(pollid):
             db.session.commit()
         return redirect(url_for('poll', pollid=pollid))
     elif form3.validate_on_submit():
+        if current_user.is_anonymous or thisuservoted:
+            return redirect(url_for('unauthorised'))
         if form3.select.data:
-            # return redirect(url_for('index'))
             newresponseplayer = Player.query.filter_by(playerid=form3.select.data).first()
             dupecheck = PollPlayer.query.filter_by(pollid=thispoll.pollid, playerid=newresponseplayer.playerid).first()
             if dupecheck:
@@ -130,28 +129,15 @@ def poll(pollid):
             db.session.add(newvote)
             db.session.commit()
         return redirect(url_for('poll', pollid=pollid))
-
-    # elif form2.validate_on_submit():
-    #     # return redirect(url_for('index'))
-    #     newresponseplayer = Player.query.filter_by(playername=form2.newname.data).first()
-    #     dupecheck = PollPlayer.query.filter_by(pollid=thispoll.pollid, playerid=newresponseplayer.playerid).first()
-    #     if dupecheck:
-    #         dupecheck.votecount += 1
-    #     # else:
-    #         # newresponse = PollPlayer(pollid=thispoll.pollid, playerid=newresponseplayer.playerid, votecount='1')
-    #         # db.session.add(newresponse)
-    #         # db.session.commit()
-    #     newvote = PollVote(userid=current_user.id, pollid=thispoll.pollid , playerid=newresponseplayer.playerid)
-    #     db.session.add(newvote)
-    #     db.session.commit()
-    #     return redirect(url_for('poll', pollid=pollid))
-    #     # return redirect(url_for('poll', pollid=pollid))
-    return render_template('poll.html', poll=thispoll, votes=playervotes, uservotes=uservotes, form=form, form2=form2, form3=form3, uservoted=thisuservoted, numvotes=optionscount)
+    return render_template('poll.html', poll=thispoll, votes=playervotes, uservotes=uservotes, form=form, form3=form3, uservoted=thisuservoted, numvotes=optionscount)
 
 @app.route('/pollcreate', methods=['GET', 'POST'])
+@login_required
 def pollcreate():
     form = PollCreateForm()
     if form.validate_on_submit():
+        if current_user.is_anonymous:
+            return redirect(url_for('unauthorised'))
         newpoll = Polls(pollname=form.pollname.data, creatorid=current_user.id)
         newpollplayer1 = PollPlayer(pollid=newpoll.pollid, playerid = form.player1.data.playerid, votecount ='0')
         db.session.add(newpoll)

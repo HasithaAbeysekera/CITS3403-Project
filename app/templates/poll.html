@@ -27,6 +27,7 @@
               {% endfor %}
           </table>
         </div>
+      </div>
         <div class="chart-container">
           <canvas id="myChart"></canvas>
         </div>
@@ -64,11 +65,12 @@
 
 {%if current_user.is_anonymous %}
 <h2> Please login to vote!</h2>
+<a href="{{ url_for('login')}}" class="otherbtn">Login</a>
 {% else %}
 {% if uservoted %}
-<h2>You have already voted</h2>
+<h2>You have already voted for this poll: {{uservoted.playervotename.playername}}</h2>
 {% else%}
-<h2>please vote below</h2>
+<h2>Please vote for below!</h2>
 
 <div class="form-wrapper2">
   <form class="form" action="" method="post" onsubmit="return validateForm(this)">
@@ -82,24 +84,11 @@
   </form>
 </div>
 
-<div class="form-wrapper2">
-  <form class="form" action="" method="post" onsubmit="return validateForm(this)">
-    <div class="form-container">
-      <h2 class="register-head">New player add</h2><br>
-      <label class="register-para" for="other"><b>Other</b></label><br>
-      {{ form2.hidden_tag() }}
-      {{form2.newname.label}}<br>
-      {{form2.newname(size=32)}}<br>
-      <p>{{ form2.submit() }}</p>
-    </div>
-  </form>
-</div>
-
 {% if not (numvotes >= 5) %}
 <div class="form-wrapper2">
     <form class="form" action="" method="post" onsubmit="return validateForm(this)">
       <div class="form-container">
-        <h2 class="register-head">Add new response to poll. Please choose from dropdown below</h2><br>
+        <h2 class="register-head">Add a new response to the poll. Please choose from dropdown below. Each poll can only have 5 possible candidates</h2><br>
         <label class="register-para" for="other"><b>Player to add</b></label><br>
         {{ form3.hidden_tag() }}<br>
         {% for error in form3.select.errors %}
