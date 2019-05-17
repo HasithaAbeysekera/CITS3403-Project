@@ -22,3 +22,18 @@ Insert blurb here
 4. `flask run` to run the website locally
 
 5. Navigate to localhost:5000 or 127.0.0.1:5000
+
+## Logins
+
+A few users logins have been created for convenience
+
+##### Admins
+
+username:`Hasi` pw:`Hasitest1`
+username:`Sam` pw:`Samtest1`
+username:`Tim` pw:`Timtest1`
+
+##### Users
+
+username:`Tom` pw:`Tomtest1`
+username:`Michael` pw:`Michaeltest1`
