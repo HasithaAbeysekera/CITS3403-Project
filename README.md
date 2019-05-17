@@ -1,5 +1,5 @@
 # CITS3403-Project
-##### ## By Hasitha (21146645) and Samual ()
+##### ## By Hasitha (21146645) and Samuel ()
 
 ### Soccer Polls
 
