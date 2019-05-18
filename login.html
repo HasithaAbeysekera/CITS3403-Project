@@ -21,7 +21,7 @@
       <div class="logo">Soccer Polls</div>
       <ul class="navbar-not-home">
         <li><a href="home.html">Home</a></li>
-        <li><a href="#">Polls</a></li>
+        <li><a href="table.html">Polls</a></li>
         <li><a href="#">Admin</a></li>
         <li><a id="active" href="#">Login</a></li>
       </ul>
@@ -32,34 +32,33 @@
   </header>
 
   <div class="form-wrapper">
+    <h2 class="login-header">Login Form</h2>
     <form class="form" onsubmit="return validateForm(this)">
+      <div class="login-icon fa-3x">
+        <i class="fas fa-users"></i>
+      </div>
       <div class="form-container">
-        <h1 class="register-head">Create a new user</h1>
-        <p class="register-para">Please fill in this form to create a new user.</p>
-        <hr>
-
         <label class="register-para" for="username"><b>Username</b></label>
         <input id="username" type="text" placeholder="Enter Username" name="username" required>
 
         <label class="register-para" for="password"><b>Password</b></label>
         <input id="password" type="password" placeholder="Enter Password" name="password" required>
 
-        <label class="register-para" for="passwordrepeat"><b>Repeat Password</b></label>
-        <input id="passwordrepeat" type="password" placeholder="Repeat Password" name="passwordrepeat" required>
-        <hr>
-        <button type="submit" class="form-button">Register User</button>
+        <button class="form-button" type="submit">Login</button>
+      </div>
+      <div class="form-bottom">
+        <p class="register-para">Don't have an account? <a href="register.html">Register now</a>.</p>
       </div>
     </form>
   </div>
-
 
   <footer class="dark-background">
     <p id="demo">  </p>
     <p id="demo2">  </p>
   </footer>
 
-
   <script src="main.js">
   </script>
+
 </body>
 </html>

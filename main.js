@@ -42,16 +42,6 @@ document.getElementById("demo2").innerHTML = a;
 
 // Login and register Validation code starts
 
-// function validateForm2(form) {
-//
-//     if(form.password.value != form.passwordrepeat.value) {
-//       alert("Error: Passwords don't match!");
-//       form.password.focus();
-//       return false;
-//     }
-//
-// }
-
 function validateForm(form) {
 
   field = /^\w+$/;
@@ -102,6 +92,81 @@ function validateForm(form) {
     return false;
   }
 }
+
+function validateForm2(form) {
+
+  field = /^\w+$/;
+  if(!field.test(form.username.value)) {
+    alert("Error: Username must contain only letters, numbers and underscores!");
+    form.username.focus();
+    return false;
+  }
+
+  if(!field.test(form.pollname.value)) {
+    alert("Error: Poll Name must contain only letters, numbers and underscores!");
+    form.username.focus();
+    return false;
+  }
+}
+
+function checkRadioButton(field) {
+  if(!field.length) {
+    field = [field];
+  }
+
+  for(var i=0; i < field.length; i++) {
+    if(field[i].checked) return field[i].value;
+  }
+  return false;
+}
+
+function validateForm3(form) {
+  var radioValue;
+  if(radioValue = checkRadioButton(form.option)) {
+    // alert("You selected " + radioValue);
+    return true;
+  }
+
+  else {
+    alert("Error: Please select an option!");
+    return false;
+  }
+}
+
+function validateForm4(form) {
+  field = /^[a-zA-Z0-9 ]+$/;
+  if(!field.test(form.name.value)) {
+    alert("Error: The new entry must contain only letters, numbers and spaces!");
+    form.other.focus();
+    return false;
+  }
+  if(!field.test(form.country.value)) {
+    alert("Error: The new entry must contain only letters, numbers and spaces!");
+    form.other.focus();
+    return false;
+  }
+  if(!field.test(form.club.value)) {
+    alert("Error: The new entry must contain only letters, numbers and spaces!");
+    form.other.focus();
+    return false;
+  }
+
+  else return true;
+}
+
+// function validateForm3() {
+//     var radios = document.getElementsByName("option");
+//     var formValid = false;
+//
+//     var i = 0;
+//     while (!formValid && i < radios.length) {
+//         if (radios[i].checked) formValid = true;
+//         i++;
+//     }
+//
+//     if (!formValid) alert("Must check some option!");
+//     return formValid;
+// }​
 
 // Login Validation code ends
 
