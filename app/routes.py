@@ -225,3 +225,17 @@ def deluser(userid):
     User.query.filter_by(id=userid).delete()
     db.session.commit()
     return redirect(url_for('admin'))
+
+
+@app.route('/usercreate', methods=['GET', 'POST'])
+@login_required
+def usercreate():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congratulations, you have now created a new registered user!')
+        return redirect(url_for('admin'))
+    return render_template('usercreate.html', title='Create User', form=form)

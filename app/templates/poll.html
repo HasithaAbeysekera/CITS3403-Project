@@ -2,110 +2,123 @@
 
 {% block content %}
 
-<div class="viewpoll-spacing">
-  <h2 class="center">{{poll.pollname}}</h2>
+<section class="height content">
+  <h2 class="center viewpoll-spacing">{{poll.pollname}}</h2>
+  <div class="grid-2">
+    <div class="vertical-line">
+      <div class="table-container2">
+        <table class="table-content2" id="myTable">
+          <thead>
+            <tr>
+              <th>Player Name</th>
+              <th>Votes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for entry in votes %}
+            <tr>
+              <td>{{ entry.playerentry.playername }}</td>
+              <td>{{ entry.votecount }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-  <!-- Polls section -->
-  <section class="view-polls">
-    <div class="content grid-2">
+    <div class="chart-container table-container2">
+      <canvas id="myChart"></canvas>
+    </div>
+  </div>
+</section>
+<!---->
+
+
+
+
+<div>
+  {%if current_user.is_anonymous %}
+  <h2> Please login to vote!</h2>
+  <a href="{{ url_for('login')}}" class="otherbtn">Login</a>
+  {% else %}
+  {% if uservoted %}
+  <h2>You have already voted for this poll: {{uservoted.playervotename.playername}}</h2>
+  {% else%}
+
+  <!--start of player vote entry-->
+  <h2>Please vote below!</h2>
+  <section class="blue-background">
+    <div class="content2 grid-2">
+
       <div class="vertical-line">
-        <div class="table-container2">
-          <table class="table-content2" id="myTable">
-
-            <thead>
-              <tr>
-                <th>Player Name</th>
-                <th>Votes</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for entry in votes %}
-              <tr>
-                <td>{{ entry.playerentry.playername }} </td>
-                <td>{{ entry.votecount }}</td>
-              </tr>
-              {% endfor %}
-          </table>
+        <div class="form-wrapper2">
+          <form class="form form2" method="post" onsubmit="return validateForm(this)">
+            <div class="form-container">
+              <h2>Vote below!</h2>
+              {{ form.hidden_tag() }}
+              {{form.entries}}<br>
+              <p>{{ form.submit() }}</p>
+            </div>
+          </form>
         </div>
       </div>
-      <div class="chart-container">
-        <canvas id="myChart"></canvas>
+
+      {% if not (numvotes >= 10) %}
+      <div class="form-wrapper2">
+        <form class="form form2" method="post" onsubmit="return validateForm(this)">
+          <div class="form-container">
+            <h2>Add a new response to the poll. Please choose from dropdown below. </h2>
+            <label class="register-para" for="other"><b>Player to add</b></label><br>
+            {{ form3.hidden_tag() }}<br>
+            {% for error in form3.select.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            {{ form3.select.label }}<br>
+            {{ form3.select }}<br>
+            {% for error in form3.submit.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            <p>{{ form3.submit() }}</p>
+          </div>
+        </form>
       </div>
+      {% endif%}
+
     </div>
   </section>
+  {% endif%}
+  {% endif%}
 </div>
 
+
+
+<!--admin view, delete votes-->
 
 {% if current_user.admin %}
-<div class="table-container2">
-  <table class="table-content2">
-    <thead>
-      <tr>
-        <th>Username</th>
-        <th>Vote</th>
-        <th>Delete?</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for entry in uservotes %}
-      <tr>
-        <td>{{entry.voter.username}}</td>
-        <td>{{entry.playervotename.playername}}</td>
-        <td><a
-            href="{{ url_for('delvote', pollid=poll.pollid, playerid=entry.playervotename.playerid, userid=entry.voter.id )  }}"
+<section class="fade-background">
+  <div class="table-container3">
+    <table class="table-content">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Vote</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for entry in uservotes %}
+        <tr>
+          <td class="fix-size">{{entry.voter.username}}</td>
+          <td>{{entry.playervotename.playername}}</td>
+          <td><a href="{{ url_for('delvote', pollid=poll.pollid, playerid=entry.playervotename.playerid, userid=entry.voter.id )  }}"
             class="tablebtn">Delete Response </a></td>
-      </tr>
-      {% endfor %}
-  </table>
-</div>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
 {%endif %}
-
-{%if current_user.is_anonymous %}
-<h2> Please login to vote!</h2>
-<a href="{{ url_for('login')}}" class="otherbtn">Login</a>
-{% else %}
-{% if uservoted %}
-<h2>You have already voted for this poll: {{uservoted.playervotename.playername}}</h2>
-{% else%}
-<h2>Please vote for below!</h2>
-
-<div class="form-wrapper2">
-  <form class="form" action="" method="post" onsubmit="return validateForm(this)">
-    <div class="form-container">
-      <h2 class="register-head">Submit your vote below!</h2><br>
-      <label class="register-para" for="other"><b>Other</b></label><br>
-      {{ form.hidden_tag() }}
-      {{form.entries}}<br>
-      <p>{{ form.submit() }}</p>
-    </div>
-  </form>
-</div>
-
-{% if not (numvotes >= 10) %}
-<div class="form-wrapper2">
-  <form class="form" action="" method="post" onsubmit="return validateForm(this)">
-    <div class="form-container">
-      <h2 class="register-head">Add a new response to the poll. Please choose from dropdown below. Each poll can only
-        have 5 possible candidates</h2><br>
-      <label class="register-para" for="other"><b>Player to add</b></label><br>
-      {{ form3.hidden_tag() }}<br>
-      {% for error in form3.select.errors %}
-      <span style="color: red;">[{{ error }}]</span>
-      {% endfor %}
-      {{ form3.select.label }}<br>
-      {{ form3.select }}<br>
-      {% for error in form3.submit.errors %}
-      <span style="color: red;">[{{ error }}]</span>
-      {% endfor %}
-      <p>{{ form3.submit() }}</p>
-    </div>
-  </form>
-</div>
-{% endif%}
-
-{% endif%}
-{% endif%}
-
 
 
 

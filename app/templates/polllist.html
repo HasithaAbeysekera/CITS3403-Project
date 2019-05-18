@@ -16,19 +16,19 @@
       </tr>
     </thead>
     <tbody>
-        {% for poll in polllist %}
-        <tr id= poll.pollid >
+      {% for poll in polllist %}
+      <tr id=poll.pollid>
         <td>{{ poll.pollid }} </td>
-        <td class="column">{{ poll.creator.username }}</td>
-        <td>{{ poll.pollname }}</td>
-        <td><a href="{{ url_for('poll', pollid=poll.pollid) }}" class="tablebtn">View Poll </a></td>
+        <td class="fix-size">{{ poll.creator.username }}</td>
+        <td class="fix-size">{{ poll.pollname }}</td>
+        <td class="fix-size"><a href="{{ url_for('poll', pollid=poll.pollid) }}" class="tablebtn">View Poll </a></td>
         {% if current_user.admin %}
-        <td><a href="{{ url_for('delpoll', pollid=poll.pollid) }}" class="tablebtn">Delete Poll </a></td>
+        <td class="fix-size"><a href="{{ url_for('delpoll', pollid=poll.pollid) }}" class="tablebtn">Delete Poll </a></td>
         {%endif %}
       </tr>
       {% endfor %}
   </table>
-  <a href="{{ url_for('pollcreate')}}"  class="otherbtn">Create New Poll </a>
+  <a href="{{ url_for('pollcreate')}}" class="otherbtn">Create New Poll </a>
 </div>
 
 

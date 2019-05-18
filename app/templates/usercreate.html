@@ -1,0 +1,58 @@
+{% extends "base2.html" %}
+
+{% block content %}
+
+
+
+<!---->
+<div class="form-wrapper">
+    <form class="form" action="" method="post" onsubmit="return validateForm(this)">
+        <div class="form-container">
+            <h1 class="register-head">User Creation Form</h1>
+            <p class="register-para">Please fill in this form to create an account.</p>
+            <hr>
+            {{ form.hidden_tag() }}
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            <label class="register-para" for="username"><b>{{ form.username.label }}</b></label><br>
+            {{ form.username(size=32) }}<br>
+            
+            <!--
+            <input type="text" placeholder="Enter Username" name="username" required>
+            -->
+            {% for error in form.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            <label class="register-para" for="email"><b>{{ form.email.label }}</b></label><br>
+            {{ form.email(size=64) }}<br>
+            
+            <!--
+            <input type="email" placeholder="Enter Email" name="email" required>
+            -->
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            <label class="register-para" for="password"><b>Password</b></label><br>
+            {{ form.password(size=32) }}<br>
+            
+            <!--
+            <input type="password" placeholder="Enter Password" name="password" required>
+            -->
+            {% for error in form.password2.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            <label class="register-para" for="passwordrepeat"><b>Repeat Password</b></label><br>
+            {{ form.password2(size=32) }}<br>
+            
+            <hr>
+            {{ form.submit() }}
+            
+        </div>
+
+        <div class="form-bottom">
+            <p class="register-para">Already have an account? <a href="{{ url_for('login') }}">Sign in</a>.</p>
+        </div>
+    </form>
+</div>
+{% endblock %}
