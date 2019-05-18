@@ -150,7 +150,7 @@ footer p {
 
 #header-text h2,
 #header-text p {
-  font-family: 'PT Sans', sans-serif;:
+  font-family: 'PT Sans', sans-serif;
 }
 
 #header-text h1 {
@@ -188,7 +188,7 @@ nav {
 nav ul {
   line-height: 50px;
   list-style: none;
-  background: rgba(21, 324, 442, 0 );
+  background: rgba(0, 0, 0, 0);
   overflow: hidden;
   color: white;
   text-align: right;
@@ -290,7 +290,7 @@ nav ul li a:hover {
   background-color: #f1f1f1;
   padding: 16px;
   text-align: center;
-  border: 3px solid #f1f1f1;
+  /* border: 3px solid #f1f1f1; */
 }
 
 .login-icon {
@@ -795,12 +795,14 @@ hr {
   .register-head {
     font-size: 20px;
   }
+
   .register-para {
     font-size: 13px;
   }
 
   .login-header {
     font-size: 17px;
+    font-weight: bold;
   }
 }
 

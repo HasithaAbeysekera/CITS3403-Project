@@ -31,35 +31,37 @@
     </nav>
   </header>
 
-  <div class="form-wrapper">
-    <form class="form" onsubmit="return validateForm(this)">
-      <div class="form-container">
-        <h1 class="register-head">Create a new user</h1>
-        <p class="register-para">Please fill in this form to create a new user.</p>
-        <hr>
+  <div class="table-container">
+    <table class="table-content">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Username</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td class="fix-size">Samuel Martin</td>
+          <td class="fix-size"><a href="#" class="tablebtn">Delete User </a></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="fix-size">Samuel Martin</td>
+          <td class="fix-size"><a href="#" class="tablebtn">Delete User </a></td>
+        </tr>
+      </table>
+      <a href="createnewuser.html" class="otherbtn">Create New User </a>
+    </div>
 
-        <label class="register-para" for="username"><b>Username</b></label>
-        <input id="username" type="text" placeholder="Enter Username" name="username" required>
+    <footer class="dark-background">
+      <p id="demo">  </p>
+      <p id="demo2">  </p>
+    </footer>
 
-        <label class="register-para" for="password"><b>Password</b></label>
-        <input id="password" type="password" placeholder="Enter Password" name="password" required>
+    <script src="main.js">
+    </script>
 
-        <label class="register-para" for="passwordrepeat"><b>Repeat Password</b></label>
-        <input id="passwordrepeat" type="password" placeholder="Repeat Password" name="passwordrepeat" required>
-        <hr>
-        <button type="submit" class="form-button">Register User</button>
-      </div>
-    </form>
-  </div>
-
-
-  <footer class="dark-background">
-    <p id="demo">  </p>
-    <p id="demo2">  </p>
-  </footer>
-
-
-  <script src="main.js">
-  </script>
 </body>
 </html>
