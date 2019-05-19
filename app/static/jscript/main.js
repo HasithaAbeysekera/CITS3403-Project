@@ -50,9 +50,17 @@ function validateForm(form) {
     form.username.focus();
     return false;
   }
+
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if(!re.test(form.email.value)) {
+    alert("Error: The email must be valid!");
+    form.email.focus();
+    return false;
+  }
+
   if(!field.test(form.password.value)) {
     alert("Error: Password must contain only letters, numbers and underscores!");
-    form.username.focus();
+    form.password.focus();
     return false;
   }
 
@@ -86,7 +94,8 @@ function validateForm(form) {
     form.password.focus();
     return false;
   }
-  if(form.password.value != form.passwordrepeat.value) {
+
+  if(form.password.value != form.password2.value) {
     alert("Error: Passwords don't match!");
     form.password.focus();
     return false;
@@ -96,15 +105,9 @@ function validateForm(form) {
 function validateForm2(form) {
 
   field = /^\w+$/;
-  if(!field.test(form.username.value)) {
-    alert("Error: Username must contain only letters, numbers and underscores!");
-    form.username.focus();
-    return false;
-  }
-
   if(!field.test(form.pollname.value)) {
     alert("Error: Poll Name must contain only letters, numbers and underscores!");
-    form.username.focus();
+    form.pollname.focus();
     return false;
   }
 }
@@ -122,7 +125,7 @@ function checkRadioButton(field) {
 
 function validateForm3(form) {
   var radioValue;
-  if(radioValue = checkRadioButton(form.option)) {
+  if(radioValue = checkRadioButton(form.entries)) {
     // alert("You selected " + radioValue);
     return true;
   }
@@ -135,19 +138,19 @@ function validateForm3(form) {
 
 function validateForm4(form) {
   field = /^[a-zA-Z0-9 ]+$/;
-  if(!field.test(form.name.value)) {
-    alert("Error: The new entry must contain only letters, numbers and spaces!");
-    form.other.focus();
+  if(!field.test(form.playername.value)) {
+    alert("Error: The new players name must contain only letters, numbers and spaces!");
+    form.playername.focus();
     return false;
   }
   if(!field.test(form.country.value)) {
-    alert("Error: The new entry must contain only letters, numbers and spaces!");
-    form.other.focus();
+    alert("Error: The new players country must contain only letters, numbers and spaces!");
+    form.country.focus();
     return false;
   }
   if(!field.test(form.club.value)) {
-    alert("Error: The new entry must contain only letters, numbers and spaces!");
-    form.other.focus();
+    alert("Error: The new players club must contain only letters, numbers and spaces!");
+    form.club.focus();
     return false;
   }
 
@@ -173,45 +176,9 @@ for (var i = 1; i < table.rows.length; i++) {
   percentageVotes[i-1] = (votes[i-1] / sumVal) * 100;
 }
 
-// var player1 = table.rows[1].cells[0].innerHTML;
-// var player2 = table.rows[2].cells[0].innerHTML;
-// var player3 = table.rows[3].cells[0].innerHTML;
-// var player4 = table.rows[4].cells[0].innerHTML;
-// var player5 = table.rows[5].cells[0].innerHTML;
-
-// var votes1 = table.rows[1].cells[1].innerHTML;
-// var votes2 = table.rows[2].cells[1].innerHTML;
-// var votes3 = table.rows[3].cells[1].innerHTML;
-// var votes4 = table.rows[4].cells[1].innerHTML;
-// var votes5 = table.rows[5].cells[1].innerHTML;
-//
-// var percentageVotes1 = (votes[1] / sumVal) * 100;
-// var percentageVotes2 = (votes[2] / sumVal) * 100;
-// var percentageVotes3 = (votes[3] / sumVal) * 100;
-// var percentageVotes4 = (votes[4] / sumVal) * 100;
-// var percentageVotes5 = (votes[5] / sumVal) * 100;
-
-// console.log(sumVal);
-console.log(players);
-console.log(votes);
-console.log(percentageVotes);
-// console.log(player2);
-// console.log(player3);
-// console.log(player4);
-// console.log(player5);
-// console.log(votes1);
-// console.log(votes2);
-// console.log(votes3);
-// console.log(votes4);
-// console.log(votes5);
-// console.log(percentageVotes1);
-// console.log(percentageVotes2);
-// console.log(percentageVotes3);
-// console.log(percentageVotes4);
-// console.log(percentageVotes5);
-
-
-
+// console.log(players);
+// console.log(votes);
+// console.log(percentageVotes);
 
 let myChart = document.getElementById('myChart').getContext('2d');
 let barChart = new Chart(myChart, {
