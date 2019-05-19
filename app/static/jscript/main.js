@@ -200,9 +200,19 @@ let barChart = new Chart(myChart, {
     }]
   },
   options:{
-    maintainAspectRatio: false
+      scales: {
+          yAxes:[{
+              display: true,
+              ticks: {
+                  beginAtZero: true,
+                  min: 0,
+                  max: 100
+              }
+          }],
+      }
   }
 });
+
 
 function updateChart() {
   chart.data.datasets[0].data = [45, 40, 9, 0, 3];
