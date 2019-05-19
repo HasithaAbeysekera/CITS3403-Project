@@ -360,7 +360,6 @@ hr {
   margin: 5px 0 17px 0;
 }
 
-
 /* table styling  */
 
 .table-container {
@@ -570,12 +569,6 @@ hr {
   .table-content2 td {
     padding: 10px 12px;
   }
-}
-
-@media screen and (max-width: 867px) {
-  .form-wrapper {
-    margin: 12rem 10rem;
-  }
 
   nav {
     padding: 0;
@@ -666,6 +659,13 @@ hr {
   nav .navbar-toggle.open-navbar-toggle span::after {
     transform: translateY(-3px) rotate(-45deg);
   }
+}
+
+@media screen and (max-width: 867px) {
+  .form-wrapper {
+    margin: 12rem 10rem;
+  }
+
 }
 
 @media screen and (max-width: 820px) {
