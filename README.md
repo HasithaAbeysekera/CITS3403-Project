@@ -1,9 +1,14 @@
-# CITS3403-Project
-##### ## By Hasitha (21146645) and Samuel ()
+# CITS3403-Project: Soccer Polls
+##### ## By Hasitha (21146645) and Samuel (22539107)
 
-### Soccer Polls
+## Web Application Purpose
 
-Insert blurb here
+The context that we have based our web application on is Soccer Polls, and the polls on our site can consist of any topic related to Soccer players. We expect users who love Soccer and love debating about different Soccer topics to use our web application. Example polls could include:
+
+1. Who do you think the best soccer player in the world is?
+2. Who do you think the best soccer player of all time is?
+
+The social choice mechanism that we used is very simple. A user wishing to vote on a poll can either select a predefined (by the poll creator) or previously used entry/answer or add a new entry to the poll when no more than eight entries already exist.
 
 ## Setup
 
