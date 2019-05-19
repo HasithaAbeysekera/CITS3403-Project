@@ -18,14 +18,12 @@
             <label class="register-para" for="username"><b>{{ form.username.label }}</b></label><br>
             <input type="text" placeholder="Username" name="username" required></input<br>
             
-            <!--
-            <input type="text" placeholder="Enter Username" name="username" required>
-            -->
+        
             {% for error in form.email.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span>[{{ error }}]</span>
             {% endfor %}
             <label class="register-para" for="email"><b>{{ form.email.label }}</b></label><br>
-            <input type="text" placeholder="Email" name="email" required></input<br>
+            <input type="email" placeholder="Email" name="email" required></input<br>
             
             <!--
             <input type="email" placeholder="Enter Email" name="email" required>
@@ -48,10 +46,6 @@
             <hr>
             <button type="submit" class="form-button">Submit</button>
             
-        </div>
-
-        <div class="form-bottom">
-            <p class="register-para">Already have an account? <a href="{{ url_for('login') }}">Sign in</a>.</p>
         </div>
     </form>
 </div>

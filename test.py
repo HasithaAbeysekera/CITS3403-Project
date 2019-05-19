@@ -78,6 +78,10 @@ class PollsModelCase(unittest.TestCase):
     def test_login(self):
         response = self.login('Hasi', 'Hasitest1')
         self.assertEqual(response.status_code, 200)
+
+    def test_loginfail(self):
+        response = self.login('Hasi', 'hasitest1')
+        self.assertNotEqual(response.status_code, 200)
     
 
 

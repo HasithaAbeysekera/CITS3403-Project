@@ -20,12 +20,19 @@
 
             </p>
             <p>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
                 {% for error in form.password.errors %}
                 <span>[{{ error }}]</span>
                 {% endfor %}
                 <label class="register-para" for="password"><b>{{ form.password.label }}</b></label><br>
                 <input type="password" placeholder="Password" name="password" required></input<br>
-                
+
             </p>
             <button class="form-button" type="submit">Submit</button>
         </div>
