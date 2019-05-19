@@ -78,7 +78,6 @@ def playercreate():
         newplayer = Player(playername=form.playername.data, nationality=form.country.data, club=form.club.data)
         db.session.add(newplayer)
         db.session.commit()
-        flash('Congratulations, you have added a new plyer')
         return redirect(url_for('playerlist'))
     return render_template('playercreate.html', form=form)   
 

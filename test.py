@@ -1,5 +1,5 @@
 import unittest, os
-from app import app, db
+from app import app, db, login
 from app.models import User, Polls, PollVote, PollPlayer, Player
 
 class UserModelCase(unittest.TestCase):
@@ -71,18 +71,13 @@ class PollsModelCase(unittest.TestCase):
         response = self.register('Hasi2', 'Hasi2@test.com', 'Hasi2test1', 'Hasi2test1')
         self.assertEqual(response.status_code, 200)
 
-    def test_valid_user_registration2(self):
-        response = self.register('Hasi2', 'Hasi2test.com', 'asd', 'asd')
-        self.assertEqual(response.status_code, 200)
-
     def test_login(self):
         response = self.login('Hasi', 'Hasitest1')
         self.assertEqual(response.status_code, 200)
 
-    def test_loginfail(self):
-        response = self.login('Hasi', 'hasitest1sd')
-        self.assert_redirects(response, url_for('login'))(response.status_code, 200)
-    
+    def test_login(self):
+        response = self.logout()
+        self.assertEqual(response.status_code, 200)
 
 
 if __name__ == '__main__':
