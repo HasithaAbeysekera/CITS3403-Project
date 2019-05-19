@@ -8,7 +8,7 @@ The context that we have based our web application on is Soccer Polls, and the p
 1. Who do you think the best soccer player in the world is?
 2. Who do you think the best soccer player of all time is?
 
-Users can then vote for the player that they think is the best (with respect to the question they are answering above). Therefore, the social choice mechanism that we have used is very simple. A user wishing to vote on a poll can either select a predefined (by the poll creator) or previously used entry/answer or add a new entry to the poll when no more than eight entries already exist. This means that a user votes for one and only one entry/answer. 
+Users can then vote for the player that they think is the best (with respect to the question they are answering above). Therefore, the social choice mechanism that we have used is very simple. A user wishing to vote on a poll can either select a predefined (by the poll creator) or previously used entry/answer or add a new entry to the poll when no more than five entries already exist. This means that a user votes for one and only one entry/answer. 
 
 ## Setup
 
