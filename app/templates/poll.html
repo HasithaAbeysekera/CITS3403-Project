@@ -30,65 +30,97 @@
       <canvas id="myChart"></canvas>
     </div>
   </div>
-
-  {%if current_user.is_anonymous %}
-  <h2 class="center viewpoll-spacing2">Please login to vote!</h2>
-  <a href="{{ url_for('login')}}" class="otherbtn">Login</a>
-  {% else %}
-    {% if uservoted %}
-  <h2 class="center viewpoll-spacing2">You have already voted for this poll: {{uservoted.playervotename.playername}}</h2>
-    {% else%}
-    <h2 class="center viewpoll-spacing2">Please vote below!</h2>
-    {% endif%}
-    {% endif%}
 </section>
+
+{%if current_user.is_anonymous %}
+<h3 class="center viewpoll-spacing2">Please login to vote!</h3>
+<a href="{{ url_for('login')}}" class="otherbtn">Login</a>
+{% else %}
+{% if uservoted %}
+<h3 class="center viewpoll-spacing2">You have already voted for this poll: {{uservoted.playervotename.playername}}</h3>
+{% else%}
+<h3 class="center viewpoll-spacing2">Please vote below!</h3>
+
+
 <!---->
 
 
 
 
- 
-  <!--start of player vote entry-->
-  
-  <section class="blue-background">
-    <div class="content2 grid-2">
 
-      <div class="vertical-line">
-        <div class="form-wrapper2">
-          <form class="form form2" method="post" onsubmit="return validateForm(this)">
-            <div class="form-container">
-              <h2>Vote below!</h2>
-              {{ form.hidden_tag() }}
-              <input type="radio" name="option" value={{playerid}}>Submit</input>
-              {{form.entries}}<br>
-              <button type="submit" class="form-button">Submit Response</button>
-            </div>
-          </form>
-        </div>
-      </div>
+<!--start of player vote entry-->
+{% if (7 >= numvotes) %}
+<section class="blue-background">
+  <div class="content2 grid-2">
 
+    <div class="vertical-line">
       <div class="form-wrapper2">
         <form class="form form2" method="post" onsubmit="return validateForm(this)">
           <div class="form-container">
-            <h2>Or add a new response to the poll. Please choose below. </h2>
-            <label class="register-para" for="other"><b>Player to add</b></label><br>
-            {{ form3.hidden_tag() }}<br>
-            {% for error in form3.select.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <h2>Vote below!</h2>
+            {{ form.hidden_tag() }}
+            {% for error in form.entries.errors %}
+            <span>[{{ error }}]</span>
             {% endfor %}
-            {{ form3.select.label }}<br>
-            {{ form3.select }}<br>
-            {% for error in form3.submit.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            <fieldset class="inlineLabels">{{form.entries}}</fieldset>
+            <br>
             <button type="submit" class="form-button">Submit Response</button>
           </div>
         </form>
       </div>
-
     </div>
-  </section>
 
+
+    <div class="form-wrapper2">
+      <form class="form form2" method="post" onsubmit="return validateForm(this)">
+        <div class="form-container">
+          <h2>Or add a new response to the poll. Please choose below. </h2>
+          <label class="register-para" for="other"><b>Player to add</b></label><br>
+          {{ form3.hidden_tag() }}<br>
+          {% for error in form3.select.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+          {{ form3.select.label }}<br>
+          {{ form3.select }}<br>
+          {% for error in form3.submit.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+          <button type="submit" class="form-button">Submit Response</button>
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+  
+
+</section>
+{%else %}
+
+
+<section class="blue-background center">
+  <div class="content2">
+
+    <div class="form-wrapper2">
+      <form class="form form2" method="post" onsubmit="return validateForm(this)">
+        <div class="form-container">
+          <h2>Vote below!</h2>
+          {{ form.hidden_tag() }}
+          {% for error in form.entries.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+          <fieldset class="inlineLabels">{{form.entries}}</fieldset>
+          <br>
+          <button type="submit" class="form-button">Submit Response</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{%endif%}
+
+{% endif%}
+{% endif%}
 
 
 
@@ -107,12 +139,13 @@
         </tr>
       </thead>
       <tbody>
-          {% for entry in uservotes %}
+        {% for entry in uservotes %}
         <tr>
           <td class="fix-size">{{entry.voter.username}}</td>
           <td>{{entry.playervotename.playername}}</td>
-          <td><a href="{{ url_for('delvote', pollid=poll.pollid, playerid=entry.playervotename.playerid, userid=entry.voter.id )  }}"
-            class="tablebtn">Delete Response </a></td>
+          <td><a
+              href="{{ url_for('delvote', pollid=poll.pollid, playerid=entry.playervotename.playerid, userid=entry.voter.id )  }}"
+              class="tablebtn">Delete Response </a></td>
         </tr>
         {% endfor %}
       </tbody>

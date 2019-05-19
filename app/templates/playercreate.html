@@ -2,45 +2,40 @@
 
 {% block content %}
 
+
+
+<!--start-->
 <div class="form-wrapper">
-	<h2 class="login-header">Add Player</h2>
-
 	<form class="form" action="" method="post" onsubmit="return validateForm(this)">
-		<div class="login-icon fa-3x">
-			<i class="fas fa-users"></i>
-		</div>
 		<div class="form-container">
+			<h1 class="register-head">Add new player</h1>
+			<p class="register-para">Fill in this form to add a new player to the database</p>
+			<hr>
 			{{ form.hidden_tag() }}
-			<p>
-				{% for error in form.playername.errors %}
-				<span style="color: red;">[{{ error }}]</span>
-				{% endfor %}
-				<label class="register-para" for="playername"><b>{{ form.playername.label }}</b></label><br>
-				{{ form.playername(size=32) }}<br>
 
-			</p>
-			<p>
-				{% for error in form.country.errors %}
-				<span style="color: red;">[{{ error }}]</span>
-				{% endfor %}
-				<label class="register-para" for="country"><b>{{ form.country.label }}</b></label><br>
-				{{ form.country(size=32) }}<br>
-			</p>
-			<p>
-				{% for error in form.club.errors %}
-				<span style="color: red;">[{{ error }}]</span>
-				{% endfor %}
-				<label class="register-para" for="club"><b>{{ form.club.label }}</b></label><br>
-				{{ form.club(size=32) }}<br>
-			</p>
+			{% for error in form.playername.errors %}
+			<span>[{{ error }}]</span>
+			{% endfor %}
+			<label class="register-para" for="playername"><b>{{ form.playername.label }}</b></label><br>
+			<input type="text" placeholder="Player Name" name="playername" required></input<br>
+
+			{% for error in form.country.errors %}
+			<span>[{{ error }}]</span>
+			{% endfor %}
+			<label class="register-para" for="country"><b>{{ form.country.label }}</b></label><br>
+			<input type="text" placeholder="Country" name="country" required></input<br>
+
+			{% for error in form.club.errors %}
+			<span>[{{ error }}]</span>
+			{% endfor %}
+			<label class="register-para" for="club"><b>{{ form.club.label }}</b></label><br>
+			<input type="text" placeholder="Club" name="club" required></input<br>
+
+
+			<hr>
 			<button type="submit" class="form-button">Submit</button>
-		</div>
 
-		<div class="form-bottom">
-			<p class="register-para">Don't have an account? <a href="{{ url_for('register') }}">Register now</a>.</p>
 		</div>
 	</form>
 </div>
-
-
 {% endblock %}

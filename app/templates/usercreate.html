@@ -13,10 +13,10 @@
             <hr>
             {{ form.hidden_tag() }}
             {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span>[{{ error }}]</span>
             {% endfor %}
             <label class="register-para" for="username"><b>{{ form.username.label }}</b></label><br>
-            {{ form.username(size=32) }}<br>
+            <input type="text" placeholder="Username" name="username" required></input<br>
             
             <!--
             <input type="text" placeholder="Enter Username" name="username" required>
@@ -25,28 +25,28 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
             <label class="register-para" for="email"><b>{{ form.email.label }}</b></label><br>
-            {{ form.email(size=64) }}<br>
+            <input type="text" placeholder="Email" name="email" required></input<br>
             
             <!--
             <input type="email" placeholder="Enter Email" name="email" required>
             -->
             {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span>[{{ error }}]</span>
             {% endfor %}
-            <label class="register-para" for="password"><b>Password</b></label><br>
-            {{ form.password(size=32) }}<br>
+            <label class="register-para" for="password"><b>{{ form.password.label }}</b></label><br>
+            <input type="password" placeholder="Password" name="password" required></input<br>
             
             <!--
             <input type="password" placeholder="Enter Password" name="password" required>
             -->
             {% for error in form.password2.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span>[{{ error }}]</span>
             {% endfor %}
-            <label class="register-para" for="passwordrepeat"><b>Repeat Password</b></label><br>
-            {{ form.password2(size=32) }}<br>
+            <label class="register-para" for="password2"><b>{{ form.password2.label }}</b></label><br>
+            <input type="password" placeholder="Confirm Password" name="password2" required></input<br>
             
             <hr>
-            {{ form.submit() }}
+            <button type="submit" class="form-button">Submit</button>
             
         </div>
 

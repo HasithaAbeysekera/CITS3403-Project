@@ -63,7 +63,7 @@ class PollCreateForm(FlaskForm):
    
 
 class PollVotingForm(FlaskForm):
-    entries = RadioField('Options', coerce=int,choices=[] )
+    entries = RadioField('Options', coerce=int,choices=[], validators=[DataRequired()] )
     submit = SubmitField('Submit')
 
 
@@ -77,7 +77,7 @@ class PollNewEntryForm(FlaskForm):
             raise ValidationError('This player does not exist.')
 
 class PollNewEntryDropDown(FlaskForm):
-    select = SelectField('Player choices',  coerce=int, choices=[], validators=[DataRequired()])
+    select = SelectField('Player choices',  coerce=int, choices=[])
     submit = SubmitField('Submit')
 
     def validate_limit(self, select):

@@ -13,18 +13,19 @@
             {{ form.hidden_tag() }}
             <p>
                 {% for error in form.username.errors %}
-                <span style="color: red;">[{{ error }}]</span>
+                <span>[{{ error }}]</span>
                 {% endfor %}
                 <label class="register-para" for="username"><b>{{ form.username.label }}</b></label><br>
-                {{ form.username(size=32) }}<br>
+                <input type="text" placeholder="Username" name="username" required></input<br>
 
             </p>
             <p>
                 {% for error in form.password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
+                <span>[{{ error }}]</span>
                 {% endfor %}
                 <label class="register-para" for="password"><b>{{ form.password.label }}</b></label><br>
-                {{ form.password(size=32) }}<br>
+                <input type="password" placeholder="Password" name="password" required></input<br>
+                
             </p>
             <button class="form-button" type="submit">Submit</button>
         </div>
