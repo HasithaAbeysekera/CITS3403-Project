@@ -56,16 +56,18 @@
     <div class="vertical-line">
       <div class="form-wrapper2">
         <form class="form form2" method="post" onsubmit="return validateForm(this)">
+            <fieldset class="inlineLabels">
           <div class="form-container">
             <h2>Vote below!</h2>
             {{ form.hidden_tag() }}
             {% for error in form.entries.errors %}
             <span>[{{ error }}]</span>
             {% endfor %}
-            <fieldset class="inlineLabels">{{form.entries}}</fieldset>
+            {{form.entries}}
             <br>
             <button type="submit" class="form-button">Submit Response</button>
           </div>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -74,14 +76,17 @@
     <div class="form-wrapper2">
       <form class="form form2" method="post" onsubmit="return validateForm(this)">
         <div class="form-container">
-          <h2>Or add a new response to the poll. Please choose below. </h2>
+          <h3>Add new entry</h3>
+          <p>Alternatively, you can add a new response to the poll. Please choose an option from the list below.</p>
+          <hr>
           <label class="register-para" for="other"><b>Player to add</b></label><br>
+          <div class="dropdown">
+            {{ form3.select }}<br>
+          </div>
           {{ form3.hidden_tag() }}<br>
           {% for error in form3.select.errors %}
           <span style="color: red;">[{{ error }}]</span>
           {% endfor %}
-          {{ form3.select.label }}<br>
-          {{ form3.select }}<br>
           {% for error in form3.submit.errors %}
           <span style="color: red;">[{{ error }}]</span>
           {% endfor %}
@@ -92,7 +97,7 @@
 
 
   </div>
-  
+
 
 </section>
 {%else %}

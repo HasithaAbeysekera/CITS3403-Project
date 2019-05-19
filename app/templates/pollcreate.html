@@ -10,7 +10,7 @@
             <hr>
             {{ form.hidden_tag() }}
             {% for error in form.pollname.errors %}
-            <spa>[{{ error }}]</span>
+            <span>[{{ error }}]</span>
             {% endfor %}
             <label class="register-para" for="pollname"><b>{{ form.pollname.label }}</b></label><br>
             <input type="text" placeholder="Pollname" name="pollname" required></input<br>
@@ -19,19 +19,26 @@
             <span>[{{ error }}]</span>
             {% endfor %}
             <label class="register-para" for="select1"><b>{{ form.select1.label }}</b></label><br>
-            {{ form.select1}}<br>
+            <div class="dropdown">
+              {{ form.select1}}<br>
+            </div>
 
             {% for error in form.select2.errors %}
             <span>[{{ error }}]</span>
             {% endfor %}
             <label class="register-para" for="select2"><b>{{ form.select2.label }}</b></label><br>
-            {{ form.select2 }}<br>
-            
+            <div class="dropdown">
+              {{ form.select2}}<br>
+            </div>
+
             {% for error in form.select3.errors %}
             <span>[{{ error }}]</span>
             {% endfor %}
             <label class="register-para" for="select3"><b>{{ form.select3.label }}</b></label><br>
-            {{ form.select3 }}<br>
+            <div class="dropdown">
+              {{ form.select3}}<br>
+            </div>
+
             <hr>
             <button type="submit" class="form-button">Submit Poll</button>
         </div>
