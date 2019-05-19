@@ -17,11 +17,13 @@ Insert blurb here
 	- pip install flask-migrate
 	- pip install  flask-login
 
-3. To prepopulate database run `python prepop.py`
+3. In terminal `set FLASK_APP=project.py` or for Mac `export FLASK_APP=project.py`
 
-4. `flask run` to run the website locally
+4. To prepopulate database run `python prepop.py`
 
-5. Navigate to localhost:5000 or 127.0.0.1:5000
+5. `flask run` to run the website locally
+
+6. Navigate to localhost:5000 or 127.0.0.1:5000
 
 ## Logins
 
