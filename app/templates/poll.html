@@ -61,7 +61,7 @@
 
     <div class="vertical-line">
       <div class="form-wrapper2">
-        <form class="form form2" method="post" onsubmit="return validateForm(this)">
+        <form class="form form2" method="post" onsubmit="return validateForm3(this)">
             <fieldset class="inlineLabels">
           <div class="form-container">
             <h2>Vote below!</h2>
@@ -80,7 +80,7 @@
 
 
     <div class="form-wrapper2">
-      <form class="form form2" method="post" onsubmit="return validateForm(this)">
+      <form class="form form2" method="post">
         <div class="form-container">
           <h3>Add new entry</h3>
           <p>Alternatively, you can add a new response to the poll. Please choose an option from the list below.</p>
@@ -113,7 +113,7 @@
   <div class="content2">
 
     <div class="form-wrapper2">
-      <form class="form form2" method="post" onsubmit="return validateForm(this)">
+      <form class="form form2" method="post" onsubmit="return validateForm3(this)">
         <div class="form-container">
           <h2>Vote below!</h2>
           {{ form.hidden_tag() }}
