@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Navbar</title>
+    <title>Soccer Polls</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style/style.css') }}" />
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,600">
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:300,600">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,500,bold" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:500" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
@@ -27,9 +28,9 @@
                     <li><a href="{{ url_for('admin') }}">Admin</a></li>
                     {% endif%}
                     {% if current_user.is_anonymous %}
-                    <li><a id="active" href="{{ url_for('login') }}">Login</a></li>
+                    <li><a class="active" href="{{ url_for('login') }}">Login</a></li>
                     {% else %}
-                    <li><a id="active" href="{{ url_for('logout') }}">Logout</a></li>
+                    <li><a class="active" href="{{ url_for('logout') }}">Logout</a></li>
                     {% endif %}
 
                 </ul>

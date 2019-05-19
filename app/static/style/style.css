@@ -236,8 +236,8 @@ nav ul li a:hover::before {
   transform: scale(1,1);
 }
 
-nav ul li a#active,
-nav ul li a#active:hover {
+nav ul li a.active,
+nav ul li a.active:hover {
   background: #E2472F;
 }
 
@@ -607,8 +607,8 @@ hr {
     padding: 16px 24px;
   }
 
-  nav ul li a#active,
-  nav ul li a#active:hover,
+  nav ul li a.active,
+  nav ul li a.active:hover,
   nav ul li a:hover {
     background: none;
   }

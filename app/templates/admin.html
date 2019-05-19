@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>
+        Admin Page
+    </title>
+</head>
+
 {% extends "base2.html" %}
 
 {% block content %}
@@ -11,16 +20,17 @@
                 <th>Delete?</th>
             </tr>
         </thead>
-        <tbody>
-            {% for user in users %}
+        <tbody>{% for user in users %}
             <tr id=user.id>
                 <td>{{ user.id }} </td>
                 <td class="fix-size">{{ user.username }}</td>
                 <td class="fix-size">{{ user.email }}</td>
-                <td class="fix-size"><a href="{{ url_for('deluser', userid=user.id) }}" class="tablebtn">Delete User </a></td>
+                <td class="fix-size"><a href="{{ url_for('deluser', userid=user.id) }}" class="tablebtn">Delete User</a></td>
             </tr>
             {% endfor %}
+        </tbody>
     </table>
     <a href="{{ url_for('usercreate')}}" class="otherbtn">Create New User </a>
 </div>
 {% endblock %}
+</html>

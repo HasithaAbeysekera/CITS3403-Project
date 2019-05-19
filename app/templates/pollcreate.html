@@ -1,9 +1,15 @@
-{% extends "base2.html" %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Poll Creation</title>
+    </head>
+    {% extends "base2.html" %}
 
 {% block content %}
 
 <div class="form-wrapper">
-    <form class="form" action="" method="post" onsubmit="return validateForm(this)">
+    <form class="form" method="post" onsubmit="return validateForm(this)">
         <div class="form-container">
             <h1 class="register-head">Create New Poll</h1>
             <p class="register-para">Please fill in this form to create a new poll.</p>
@@ -13,7 +19,7 @@
             <span>[{{ error }}]</span>
             {% endfor %}
             <label class="register-para" for="pollname"><b>{{ form.pollname.label }}</b></label><br>
-            <input type="text" placeholder="Pollname" name="pollname" required></input<br>
+            <input id="pollname" type="text" placeholder="Pollname" name="pollname" required>
             <br>
             {% for error in form.select1.errors %}
             <span>[{{ error }}]</span>

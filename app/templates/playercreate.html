@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="utf-8">
+		<title>New Player Creation</title>
+    </head>
+
 {% extends "base2.html" %}
 
 {% block content %}
@@ -6,7 +13,7 @@
 
 <!--start-->
 <div class="form-wrapper">
-	<form class="form" action="" method="post" onsubmit="return validateForm(this)">
+	<form class="form" method="post" onsubmit="return validateForm(this)">
 		<div class="form-container">
 			<h1 class="register-head">Add new player</h1>
 			<p class="register-para">Fill in this form to add a new player to the database</p>
@@ -17,19 +24,19 @@
 			<span>[{{ error }}]</span>
 			{% endfor %}
 			<label class="register-para" for="playername"><b>{{ form.playername.label }}</b></label><br>
-			<input type="text" placeholder="Player Name" name="playername" required></input<br>
+			<input id="playername" type="text" placeholder="Player Name" name="playername" required>
 
 			{% for error in form.country.errors %}
 			<span>[{{ error }}]</span>
 			{% endfor %}
 			<label class="register-para" for="country"><b>{{ form.country.label }}</b></label><br>
-			<input type="text" placeholder="Country" name="country" required></input<br>
+			<input id="country" type="text" placeholder="Country" name="country" required>
 
 			{% for error in form.club.errors %}
 			<span>[{{ error }}]</span>
 			{% endfor %}
 			<label class="register-para" for="club"><b>{{ form.club.label }}</b></label><br>
-			<input type="text" placeholder="Club" name="club" required></input<br>
+			<input id="club" type="text" placeholder="Club" name="club" required>
 
 
 			<hr>
@@ -39,3 +46,4 @@
 	</form>
 </div>
 {% endblock %}
+</html>
