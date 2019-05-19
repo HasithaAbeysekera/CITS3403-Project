@@ -165,7 +165,7 @@ var percentageVotes = [];
 
 for (var i = 1; i < table.rows.length; i++) {
   sumVal = sumVal + parseInt(table.rows[i].cells[1].innerHTML);
-  players[i-1] = table.rows[i].cells[0].innerHTML;
+  players[i-1] = table.rows[i].cells[0].innerHTML.split(" ").slice(-1);
   votes[i-1] = table.rows[i].cells[1].innerHTML;
 }
 

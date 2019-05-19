@@ -35,12 +35,12 @@
   <h2 class="center viewpoll-spacing2">Please login to vote!</h2>
   <a href="{{ url_for('login')}}" class="otherbtn">Login</a>
   {% else %}
-  {% if uservoted %}
+    {% if uservoted %}
   <h2 class="center viewpoll-spacing2">You have already voted for this poll: {{uservoted.playervotename.playername}}</h2>
-  {% else%}
-  <h2 class="center viewpoll-spacing2">Please vote below!</h2>
-  {% endif%}
-  {% endif%}
+    {% else%}
+    <h2 class="center viewpoll-spacing2">Please vote below!</h2>
+    {% endif%}
+    {% endif%}
 </section>
 <!---->
 
@@ -59,8 +59,9 @@
             <div class="form-container">
               <h2>Vote below!</h2>
               {{ form.hidden_tag() }}
+              <input type="radio" name="option" value={{playerid}}>Submit</input>
               {{form.entries}}<br>
-              <p>{{ form.submit() }}</p>
+              <button type="submit" class="form-button">Submit Response</button>
             </div>
           </form>
         </div>
@@ -80,7 +81,7 @@
             {% for error in form3.submit.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-            <p>{{ form3.submit() }}</p>
+            <button type="submit" class="form-button">Submit Response</button>
           </div>
         </form>
       </div>
