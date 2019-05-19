@@ -133,7 +133,7 @@ footer p {
   padding: 0;
   width: 100%;
   height: 100vh;
-  background: url(../images/me.jpg) no-repeat center/cover;
+  background: url(me.jpg) no-repeat center/cover;
   background-size: cover;
   position: relative;
   overflow-y: hidden;
@@ -188,7 +188,7 @@ nav {
 nav ul {
   line-height: 50px;
   list-style: none;
-  background: rgba(21, 324, 442, 0 );
+  background: rgba(0, 0, 0, 0);
   overflow: hidden;
   color: white;
   text-align: right;
@@ -290,7 +290,7 @@ nav ul li a:hover {
   background-color: #f1f1f1;
   padding: 16px;
   text-align: center;
-  border: 3px solid #f1f1f1;
+  /* border: 3px solid #f1f1f1; */
 }
 
 .login-icon {
@@ -485,6 +485,11 @@ hr {
 .viewpoll-spacing {
   padding: 4rem 2rem 2rem 2rem;
 }
+
+.viewpoll-spacing2 {
+  padding: 2rem 2rem 0 2rem;
+}
+
 
 .chart-container{
    /* height:400px; */
@@ -795,12 +800,14 @@ hr {
   .register-head {
     font-size: 20px;
   }
+
   .register-para {
     font-size: 13px;
   }
 
   .login-header {
     font-size: 17px;
+    font-weight: bold;
   }
 }
 

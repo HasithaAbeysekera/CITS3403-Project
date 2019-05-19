@@ -44,6 +44,9 @@ class Polls(db.Model):
     pollid = db.Column(db.Integer, primary_key=True)
     pollname = db.Column(db.String(64), index=True, unique=False)
     creatorid = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return 'PollID: {}, Poll Name: {}, Created by {}'.format(self.pollid, self.pollname, self.creatorid.username)
     
 
 class PollVote(db.Model):

@@ -30,23 +30,26 @@
       <canvas id="myChart"></canvas>
     </div>
   </div>
+
+  {%if current_user.is_anonymous %}
+  <h2 class="center viewpoll-spacing2">Please login to vote!</h2>
+  <a href="{{ url_for('login')}}" class="otherbtn">Login</a>
+  {% else %}
+  {% if uservoted %}
+  <h2 class="center viewpoll-spacing2">You have already voted for this poll: {{uservoted.playervotename.playername}}</h2>
+  {% else%}
+  <h2 class="center viewpoll-spacing2">Please vote below!</h2>
+  {% endif%}
+  {% endif%}
 </section>
 <!---->
 
 
 
 
-<div>
-  {%if current_user.is_anonymous %}
-  <h2> Please login to vote!</h2>
-  <a href="{{ url_for('login')}}" class="otherbtn">Login</a>
-  {% else %}
-  {% if uservoted %}
-  <h2>You have already voted for this poll: {{uservoted.playervotename.playername}}</h2>
-  {% else%}
-
+ 
   <!--start of player vote entry-->
-  <h2>Please vote below!</h2>
+  
   <section class="blue-background">
     <div class="content2 grid-2">
 
@@ -63,11 +66,10 @@
         </div>
       </div>
 
-      {% if not (numvotes >= 10) %}
       <div class="form-wrapper2">
         <form class="form form2" method="post" onsubmit="return validateForm(this)">
           <div class="form-container">
-            <h2>Add a new response to the poll. Please choose from dropdown below. </h2>
+            <h2>Or add a new response to the poll. Please choose below. </h2>
             <label class="register-para" for="other"><b>Player to add</b></label><br>
             {{ form3.hidden_tag() }}<br>
             {% for error in form3.select.errors %}
@@ -82,13 +84,11 @@
           </div>
         </form>
       </div>
-      {% endif%}
 
     </div>
   </section>
-  {% endif%}
-  {% endif%}
-</div>
+
+
 
 
 

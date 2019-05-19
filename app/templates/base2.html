@@ -29,7 +29,7 @@
                 {% if current_user.is_anonymous %}
                 <li><a id="active" href="{{ url_for('login') }}">Login</a></li>
                 {% else %}
-                <a id="active" href="{{ url_for('logout') }}">Logout</a>
+                <li><a id="active" href="{{ url_for('logout') }}">Logout</a></li>
                 {% endif %}
             </ul>
             <button class="navbar-toggle">

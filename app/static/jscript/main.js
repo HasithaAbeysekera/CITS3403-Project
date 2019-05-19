@@ -42,16 +42,6 @@ document.getElementById("demo2").innerHTML = a;
 
 // Login and register Validation code starts
 
-// function validateForm2(form) {
-//
-//     if(form.password.value != form.passwordrepeat.value) {
-//       alert("Error: Passwords don't match!");
-//       form.password.focus();
-//       return false;
-//     }
-//
-// }
-
 function validateForm(form) {
 
   field = /^\w+$/;
@@ -103,37 +93,108 @@ function validateForm(form) {
   }
 }
 
+function validateForm2(form) {
+
+  field = /^\w+$/;
+  if(!field.test(form.username.value)) {
+    alert("Error: Username must contain only letters, numbers and underscores!");
+    form.username.focus();
+    return false;
+  }
+
+  if(!field.test(form.pollname.value)) {
+    alert("Error: Poll Name must contain only letters, numbers and underscores!");
+    form.username.focus();
+    return false;
+  }
+}
+
+function checkRadioButton(field) {
+  if(!field.length) {
+    field = [field];
+  }
+
+  for(var i=0; i < field.length; i++) {
+    if(field[i].checked) return field[i].value;
+  }
+  return false;
+}
+
+function validateForm3(form) {
+  var radioValue;
+  if(radioValue = checkRadioButton(form.option)) {
+    // alert("You selected " + radioValue);
+    return true;
+  }
+
+  else {
+    alert("Error: Please select an option!");
+    return false;
+  }
+}
+
+function validateForm4(form) {
+  field = /^[a-zA-Z0-9 ]+$/;
+  if(!field.test(form.name.value)) {
+    alert("Error: The new entry must contain only letters, numbers and spaces!");
+    form.other.focus();
+    return false;
+  }
+  if(!field.test(form.country.value)) {
+    alert("Error: The new entry must contain only letters, numbers and spaces!");
+    form.other.focus();
+    return false;
+  }
+  if(!field.test(form.club.value)) {
+    alert("Error: The new entry must contain only letters, numbers and spaces!");
+    form.other.focus();
+    return false;
+  }
+
+  else return true;
+}
+
 // Login Validation code ends
 
 //bar chart code
 
 var table = document.getElementById("myTable"), sumVal = 0;
-// var players = [];
+var players = [];
+var votes = [];
+var percentageVotes = [];
+
 for (var i = 1; i < table.rows.length; i++) {
   sumVal = sumVal + parseInt(table.rows[i].cells[1].innerHTML);
-  // players += table.rows[i].cells[0].innerHTML;
+  players[i-1] = table.rows[i].cells[0].innerHTML;
+  votes[i-1] = table.rows[i].cells[1].innerHTML;
 }
-var player1 = table.rows[1].cells[0].innerHTML;
-var player2 = table.rows[2].cells[0].innerHTML;
-var player3 = table.rows[3].cells[0].innerHTML;
-var player4 = table.rows[4].cells[0].innerHTML;
-var player5 = table.rows[5].cells[0].innerHTML;
 
-var votes1 = table.rows[1].cells[1].innerHTML;
-var votes2 = table.rows[2].cells[1].innerHTML;
-var votes3 = table.rows[3].cells[1].innerHTML;
-var votes4 = table.rows[4].cells[1].innerHTML;
-var votes5 = table.rows[5].cells[1].innerHTML;
+for (var i = 1; i < table.rows.length; i++) {
+  percentageVotes[i-1] = (votes[i-1] / sumVal) * 100;
+}
 
-var percentageVotes1 = (votes1 / sumVal) * 100;
-var percentageVotes2 = (votes2 / sumVal) * 100;
-var percentageVotes3 = (votes3 / sumVal) * 100;
-var percentageVotes4 = (votes4 / sumVal) * 100;
-var percentageVotes5 = (votes5 / sumVal) * 100;
+// var player1 = table.rows[1].cells[0].innerHTML;
+// var player2 = table.rows[2].cells[0].innerHTML;
+// var player3 = table.rows[3].cells[0].innerHTML;
+// var player4 = table.rows[4].cells[0].innerHTML;
+// var player5 = table.rows[5].cells[0].innerHTML;
+
+// var votes1 = table.rows[1].cells[1].innerHTML;
+// var votes2 = table.rows[2].cells[1].innerHTML;
+// var votes3 = table.rows[3].cells[1].innerHTML;
+// var votes4 = table.rows[4].cells[1].innerHTML;
+// var votes5 = table.rows[5].cells[1].innerHTML;
+//
+// var percentageVotes1 = (votes[1] / sumVal) * 100;
+// var percentageVotes2 = (votes[2] / sumVal) * 100;
+// var percentageVotes3 = (votes[3] / sumVal) * 100;
+// var percentageVotes4 = (votes[4] / sumVal) * 100;
+// var percentageVotes5 = (votes[5] / sumVal) * 100;
 
 // console.log(sumVal);
-// console.log(players);
-// console.log(player1);
+console.log(players);
+console.log(votes);
+console.log(percentageVotes);
 // console.log(player2);
 // console.log(player3);
 // console.log(player4);
@@ -156,16 +217,10 @@ let myChart = document.getElementById('myChart').getContext('2d');
 let barChart = new Chart(myChart, {
   type:'bar',
   data: {
-    labels:[player1,player2,player3,player4, player5],
+    labels:players,
     datasets:[{
       label:'Percentage vote',
-      data:[
-        percentageVotes1,
-        percentageVotes2,
-        percentageVotes3,
-        percentageVotes4,
-        percentageVotes5
-      ],
+      data:percentageVotes,
       // backgroundColor:'#009879'
       backgroundColor:[
         'rgba(153,102,255,0.6)',
