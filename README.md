@@ -44,3 +44,9 @@ username:`Tim` pw:`Timtest1`
 
 username:`Tom` pw:`Tomtest1`
 username:`Michael` pw:`Michaeltest1`
+
+
+## JavaScript Libraries Used
+
+We used Chart.js in order to give a nice graphical representation of the results of the polls.
+
