@@ -46,7 +46,15 @@ username:`Tom` pw:`Tomtest1`
 username:`Michael` pw:`Michaeltest1`
 
 
-## JavaScript Libraries Used
+## References
+
+##### JavaScript Libraries Used
 
 We used Chart.js in order to give a nice graphical representation of the results of the polls.
+
+##### JavaScript RegExp for email validation
+
+The following website was used for an effective regular expression that ensures an email address is validated.
+https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript 
+
 
