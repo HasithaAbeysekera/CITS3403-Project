@@ -18,7 +18,7 @@
             {% for error in form.select1.errors %}
             <span>[{{ error }}]</span>
             {% endfor %}
-            <label class="register-para" for="select1"><b>{{ form.select1.label }}</b></label><br>
+            <p class="register-para" ><b>{{ form.select1.label }}</b></p>
             <div class="dropdown">
               {{ form.select1}}<br>
             </div>
@@ -26,7 +26,7 @@
             {% for error in form.select2.errors %}
             <span>[{{ error }}]</span>
             {% endfor %}
-            <label class="register-para" for="select2"><b>{{ form.select2.label }}</b></label><br>
+            <p class="register-para"><b>{{ form.select2.label }}</b></p>
             <div class="dropdown">
               {{ form.select2}}<br>
             </div>
@@ -34,7 +34,7 @@
             {% for error in form.select3.errors %}
             <span>[{{ error }}]</span>
             {% endfor %}
-            <label class="register-para" for="select3"><b>{{ form.select3.label }}</b></label><br>
+            <p class="register-para"><b>{{ form.select3.label }}</b></p>
             <div class="dropdown">
               {{ form.select3}}<br>
             </div>

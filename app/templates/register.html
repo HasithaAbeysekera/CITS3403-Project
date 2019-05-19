@@ -6,7 +6,7 @@
 
 <!---->
 <div class="form-wrapper">
-    <form class="form" action="" method="post" onsubmit="return validateForm(this)">
+    <form class="form" method="post" onsubmit="return validateForm(this)">
         <div class="form-container">
             <h1 class="register-head">Register</h1>
             <p class="register-para">Please fill in this form to create an account.</p>
@@ -16,7 +16,7 @@
             <span>[{{ error }}]</span>
             {% endfor %}
             <label class="register-para" for="username"><b>{{ form.username.label }}</b></label><br>
-            <input type="text" placeholder="Username" name="username" required></input<br>
+            <input id="username" type="text" placeholder="Username" name="username" required></input<br>
             
             <!--
             <input type="text" placeholder="Enter Username" name="username" required>
@@ -25,7 +25,7 @@
             <span>[{{ error }}]</span>
             {% endfor %}
             <label class="register-para" for="email"><b>{{ form.email.label }}</b></label><br>
-            <input type="email" placeholder="Email" name="email" required></input<br>
+            <input id="email" type="text" placeholder="Email" name="email" required></input<br>
             
             <!--
             <input type="email" placeholder="Enter Email" name="email" required>
@@ -34,7 +34,7 @@
             <span>[{{ error }}]</span>
             {% endfor %}
             <label class="register-para" for="password"><b>{{ form.password.label }}</b></label><br>
-            <input type="password" placeholder="Password" name="password" required></input<br>
+            <input id="password" type="password" placeholder="Password" name="password" required></input<br>
 
             <!--
             <input type="password" placeholder="Enter Password" name="password" required>
@@ -43,7 +43,7 @@
             <span>[{{ error }}]</span>
             {% endfor %}
             <label class="register-para" for="password2"><b>{{ form.password2.label }}</b></label><br>
-            <input type="password" placeholder="Confirm Password" name="password2" required></input<br>
+            <input id="password2" type="password" placeholder="Confirm Password" name="password2" required></input<br>
             
             <hr>
             <button type="submit" class="form-button">Submit Response</button>

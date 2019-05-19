@@ -80,8 +80,8 @@ class PollsModelCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_loginfail(self):
-        response = self.login('Hasi', 'hasitest1')
-        self.assertNotEqual(response.status_code, 200)
+        response = self.login('Hasi', 'hasitest1sd')
+        self.assert_redirects(response, url_for('login'))(response.status_code, 200)
     
 
 

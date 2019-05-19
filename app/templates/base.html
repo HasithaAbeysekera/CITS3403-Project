@@ -20,7 +20,7 @@
             <nav class="navbar">
                 <div class="logo">Soccer Polls</div>
                 <ul>
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('index')}}">Home</a></li>
                     <li><a href="{{ url_for('polllist') }}">Polls</a></li>
                     <li><a href="{{ url_for('playerlist') }}">Players</a></li>
                     {% if current_user.admin %}
