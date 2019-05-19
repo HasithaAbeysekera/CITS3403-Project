@@ -154,51 +154,47 @@ function validateForm4(form) {
   else return true;
 }
 
-// function validateForm3() {
-//     var radios = document.getElementsByName("option");
-//     var formValid = false;
-//
-//     var i = 0;
-//     while (!formValid && i < radios.length) {
-//         if (radios[i].checked) formValid = true;
-//         i++;
-//     }
-//
-//     if (!formValid) alert("Must check some option!");
-//     return formValid;
-// }​
-
 // Login Validation code ends
 
 //bar chart code
 
 var table = document.getElementById("myTable"), sumVal = 0;
-// var players = [];
+var players = [];
+var votes = [];
+var percentageVotes = [];
+
 for (var i = 1; i < table.rows.length; i++) {
   sumVal = sumVal + parseInt(table.rows[i].cells[1].innerHTML);
-  // players += table.rows[i].cells[0].innerHTML;
+  players[i-1] = table.rows[i].cells[0].innerHTML;
+  votes[i-1] = table.rows[i].cells[1].innerHTML;
 }
-var player1 = table.rows[1].cells[0].innerHTML;
-var player2 = table.rows[2].cells[0].innerHTML;
-var player3 = table.rows[3].cells[0].innerHTML;
-var player4 = table.rows[4].cells[0].innerHTML;
-var player5 = table.rows[5].cells[0].innerHTML;
 
-var votes1 = table.rows[1].cells[1].innerHTML;
-var votes2 = table.rows[2].cells[1].innerHTML;
-var votes3 = table.rows[3].cells[1].innerHTML;
-var votes4 = table.rows[4].cells[1].innerHTML;
-var votes5 = table.rows[5].cells[1].innerHTML;
+for (var i = 1; i < table.rows.length; i++) {
+  percentageVotes[i-1] = (votes[i-1] / sumVal) * 100;
+}
 
-var percentageVotes1 = (votes1 / sumVal) * 100;
-var percentageVotes2 = (votes2 / sumVal) * 100;
-var percentageVotes3 = (votes3 / sumVal) * 100;
-var percentageVotes4 = (votes4 / sumVal) * 100;
-var percentageVotes5 = (votes5 / sumVal) * 100;
+// var player1 = table.rows[1].cells[0].innerHTML;
+// var player2 = table.rows[2].cells[0].innerHTML;
+// var player3 = table.rows[3].cells[0].innerHTML;
+// var player4 = table.rows[4].cells[0].innerHTML;
+// var player5 = table.rows[5].cells[0].innerHTML;
+
+// var votes1 = table.rows[1].cells[1].innerHTML;
+// var votes2 = table.rows[2].cells[1].innerHTML;
+// var votes3 = table.rows[3].cells[1].innerHTML;
+// var votes4 = table.rows[4].cells[1].innerHTML;
+// var votes5 = table.rows[5].cells[1].innerHTML;
+//
+// var percentageVotes1 = (votes[1] / sumVal) * 100;
+// var percentageVotes2 = (votes[2] / sumVal) * 100;
+// var percentageVotes3 = (votes[3] / sumVal) * 100;
+// var percentageVotes4 = (votes[4] / sumVal) * 100;
+// var percentageVotes5 = (votes[5] / sumVal) * 100;
 
 // console.log(sumVal);
-// console.log(players);
-// console.log(player1);
+console.log(players);
+console.log(votes);
+console.log(percentageVotes);
 // console.log(player2);
 // console.log(player3);
 // console.log(player4);
@@ -221,16 +217,10 @@ let myChart = document.getElementById('myChart').getContext('2d');
 let barChart = new Chart(myChart, {
   type:'bar',
   data: {
-    labels:[player1,player2,player3,player4, player5],
+    labels:players,
     datasets:[{
       label:'Percentage vote',
-      data:[
-        percentageVotes1,
-        percentageVotes2,
-        percentageVotes3,
-        percentageVotes4,
-        percentageVotes5
-      ],
+      data:percentageVotes,
       // backgroundColor:'#009879'
       backgroundColor:[
         'rgba(153,102,255,0.6)',
