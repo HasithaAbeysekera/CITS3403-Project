@@ -1,7 +1,7 @@
 On branch master
 Your branch is up to date with 'origin/master'.
 
-Untracked files:
-	commits.txt
+Changes not staged for commit:
+	modified:   commits.txt
 
-nothing added to commit but untracked files present
+no changes added to commit
