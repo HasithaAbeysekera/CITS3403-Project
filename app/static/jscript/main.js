@@ -104,9 +104,9 @@ function validateForm(form) {
 
 function validateForm2(form) {
 
-  field = /^\w+$/;
+  field = /^[a-zA-Z0-9 ]+$/;
   if(!field.test(form.pollname.value)) {
-    alert("Error: Poll Name must contain only letters, numbers and underscores!");
+    alert("Error: Poll Name must contain only letters, numbers and spaces!");
     form.pollname.focus();
     return false;
   }
