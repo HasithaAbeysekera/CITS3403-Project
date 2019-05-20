@@ -10,6 +10,8 @@ The context that we have based our web application on is Soccer Polls, and the p
 
 Users can then vote for the player that they think is the best (with respect to the question they are answering above). Therefore, the social choice mechanism that we have used is very simple. A user wishing to vote on a poll can either select a predefined (by the poll creator) or previously used entry/answer or add a new entry to the poll when no more than five entries already exist. This means that a user votes for one and only one entry/answer. 
 
+## Architecture
+
 The website is built with a combination of HTML, CSS and JS on the frontend with a backend built upon the Flask framework along with Python. Chart.js was used for visualisation of the polls.
 
 ## Setup
@@ -66,4 +68,8 @@ We used Chart.js in order to give a nice graphical representation of the results
 
 The following website was used for an effective regular expression that ensures an email address is validated.
 https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript 
+
+##### Homepage Background Image
+
+Image owned by Samuel Martin 
 
