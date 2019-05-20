@@ -89,7 +89,8 @@ def polllist():
 @app.route('/poll/<pollid>', methods=['GET', 'POST'])
 def poll(pollid):
     thispoll = Polls.query.filter_by(pollid=pollid).first()
-    playervotes = PollPlayer.query.filter_by(pollid=pollid).all()
+    # playervotes = PollPlayer.query.filter_by(pollid=pollid).all()
+    playervotes = PollPlayer.query.filter_by(pollid=pollid).order_by(PollPlayer.votecount.desc()).all()
     uservotes = PollVote.query.filter_by(pollid=pollid)
     optionscount = PollPlayer.query.filter_by(pollid=pollid).count()
     if current_user.is_anonymous:

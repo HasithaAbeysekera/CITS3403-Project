@@ -1,61 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Soccer Polls</title>
-    </head>
+
+<head>
+  <meta charset="utf-8">
+  <title>Soccer Polls</title>
+</head>
 {% extends "base.html" %}
 
 {% block content %}
 
 <section class="content-polls-users green-background">
-    <div class="content grid-2 center">
-      <div class="vertical-line">
-        <h2 class="content-head">
-          Polls <i class="fas fa-futbol"></i> <i class="fas fa-poll"></i>
-        </h2>
-        <p>
-          Want to know if people also think Cristiano Ronaldo is the best player in
-          the world? Well, you are in the right place! View current and exciting soccer
-          polls now, by clicking the 'View Polls' button below. Or if you want to make
-          a poll of your own, Login and get creative!
+  <div class="content grid-2 center">
+    <div class="vertical-line">
+      <h2 class="content-head">
+        Polls <i class="fas fa-futbol"></i> <i class="fas fa-poll"></i>
+      </h2>
+      <p>
+        Want to know if people also think Cristiano Ronaldo is the best player in
+        the world? Well, you are in the right place! View current and exciting soccer
+        polls now, by clicking the 'View Polls' button below. Or if you want to make
+        a poll of your own, Login and get creative!
 
-        </p>
-        <a href="{{ url_for('polllist') }}" class="button"> View Polls </a>
-      </div>
-
-      <div>
-        <h2 class="content-head">
-          Players <i class="fas fa-users"></i> <i class="fas fa-user-secret"></i>
-        </h2>
-        <p>
-          Our player database has 20 of the top ranked football players in current times.
-          View the list and add see if your favourite is in there. If not, feel free to add them in!
-        </p>
-        <a href="{{ url_for('playerlist') }}" class="button"> Players List </a>
-      </div>
+      </p>
+      <a href="{{ url_for('polllist') }}" class="button"> View Polls </a>
     </div>
-  </section>
 
-  <!-- Explain the website -->
-  <section class="content-main light-background">
-    <div class="content center grid-2">
-      <div>
+    <div>
+      <h2 class="content-head">
+        Players <i class="fas fa-users"></i> <i class="fas fa-user-secret"></i>
+      </h2>
+      <p>
+        Our player database has 20 of the top ranked football players in current times.
+        View the list and add see if your favourite is in there. If not, feel free to add them in!
+      </p>
+      <a href="{{ url_for('playerlist') }}" class="button"> Players List </a>
+    </div>
+  </div>
+</section>
+
+<!-- Explain the website -->
+<section class="content-main light-background">
+  <div class="content center grid-2">
+    <div>
       <h2 class="content-head">
         How does the ranking system work?
       </h2>
       <p>
-        Ranking is based on the results with the largest percentage of votes.
-        For example, if 60% of Users vote on a poll for Zlatan Ibrahimovich to receive the
-        goal of the week award, then he will be ranked first and so on.
+        The ranking for polls on our site is based on the percentage of votes a Soccer player receives.
+        The player with the highest ranking is the player with the highest percentage of votes.
+        For example, if 60% of Users vote on a poll for Lionel Messi as the best player in the world,
+        then he will be ranked first etc.
+        </br>
+        </br>
+        A user wishing to vote on a poll can either select a predefined (by the poll creator) or previously 
+        used entry/answer or add a new entry to the poll when no more than five entries already exist. This 
+        means that a user votes for one and only one entry/answer.
       </p>
-      </div>
-      <div class="center">
-        <i class="fas fa-poll fa-10x"></i>
-         <!-- <img src="pie-chart-world-cup.gif" alt="SOCCER POLL"> -->
-      </div>
     </div>
-  </section>
+    <div class="center">
+      <i class="fas fa-poll fa-10x"></i>
+      <!-- <img src="pie-chart-world-cup.gif" alt="SOCCER POLL"> -->
+    </div>
+  </div>
+</section>
 {% endblock %}
 
 </html>
