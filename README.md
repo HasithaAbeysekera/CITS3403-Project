@@ -55,7 +55,6 @@ username:`Tom` pw:`Tomtest1`
 
 username:`Michael` pw:`Michaeltest1`
 
-
 ## Tests
 
 A few routing tests have been created. To run `python test.py`
@@ -74,4 +73,9 @@ https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-ja
 ##### Homepage Background Image
 
 Image owned by Samuel Martin 
+
+## Commit Logs and Requirements
+
+Ther commit logs can be found in commitlogs.txt and the required modules can be found in requirements.txt.
+
 
