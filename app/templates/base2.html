@@ -20,11 +20,7 @@
 
     <header>
         <nav class="navbar">
-            {% if current_user.is_anonymous %}
             <div class="logo">Soccer Polls</div>
-            {%else%}
-            <div class="logo">Soccer Polls - {{current_user.username}}</div>
-            {% endif%}
             <ul class="navbar-not-home">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('polllist') }}">Polls</a></li>

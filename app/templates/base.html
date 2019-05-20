@@ -19,11 +19,7 @@
     <div id="Homepage-header">
         <header>
             <nav class="navbar">
-                {% if current_user.is_anonymous %}
                 <div class="logo">Soccer Polls</div>
-                {%else%}
-                <div class="logo">Soccer Polls - {{current_user.username}}</div>
-                {% endif%}
                 <ul>
                     <li><a href="{{ url_for('index')}}">Home</a></li>
                     <li><a href="{{ url_for('polllist') }}">Polls</a></li>
@@ -44,8 +40,13 @@
             </nav>
         </header>
         <div id="header-text">
-            <h1>Soccer Polls.</h1>
-            <h2>Your home to polls based on your favorite sport: SOCCER.</h2>
+            {%if not current_user.is_anonymous %}
+            <h1>Welcome to</h1>
+            <h1> Soccer Polls, {{current_user.username}}</h1>
+            {% else %}    
+            <h1>Soccer Polls</h1>
+            {% endif%}
+            <h2>Your home to polls based on your favorite sport: SOCCER</h2>
             <p class="mobile-hide">
                 Soccer Polls is the best place for you to create polls and vote on polls
                 based on your favorite soccer topics.
