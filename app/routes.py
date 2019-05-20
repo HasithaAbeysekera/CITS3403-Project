@@ -161,7 +161,6 @@ def pollcreate():
             newpollplayer3 = PollPlayer(pollid=newpoll.pollid, playerid = form.select3.data, votecount ='0')
             db.session.add(newpollplayer3)
             db.session.commit()
-        flash('Congratulations, you have created a new poll')
         return redirect(url_for('polllist'))
     return render_template('pollcreate.html', form=form)
 
@@ -234,6 +233,5 @@ def usercreate():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('Congratulations, you have now created a new registered user!')
         return redirect(url_for('admin'))
     return render_template('usercreate.html', title='Create User', form=form)

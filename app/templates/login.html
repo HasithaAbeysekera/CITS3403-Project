@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>
-            Login Page
-        </title>
-    </head>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        Login Page
+    </title>
+</head>
 {% extends "base2.html" %}
 
 {% block content %}
@@ -17,6 +18,15 @@
         <div class="login-icon fa-3x">
             <i class="fas fa-users"></i>
         </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
         <div class="form-container">
             {{ form.hidden_tag() }}
             <p>
@@ -28,13 +38,7 @@
 
             </p>
             <p>
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                {% for message in messages %}
-                {{ message }}
-                {% endfor %}
-                {% endif %}
-                {% endwith %}
+
                 {% for error in form.password.errors %}
                 <span>[{{ error }}]</span>
                 {% endfor %}
@@ -51,4 +55,5 @@
     </form>
 </div>
 {% endblock %}
+
 </html>
