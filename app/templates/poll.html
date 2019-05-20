@@ -39,8 +39,11 @@
 </section>
 
 {%if current_user.is_anonymous %}
-<h3 class="center viewpoll-spacing2">Please login to vote!</h3>
-<a href="{{ url_for('login')}}" class="otherbtn">Login</a>
+<div class="center viewpoll-spacing2">
+  <h3>Please login to vote!</h3>
+  <a href="{{ url_for('login')}}" class="button">Login</a>
+</div>
+
 {% else %}
 {% if uservoted %}
 <h3 class="center viewpoll-spacing2">You have already voted for this poll: {{uservoted.playervotename.playername}}</h3>
