@@ -440,6 +440,7 @@ hr {
   align-items: center !important;
   justify-content: center !important;
   margin: 4rem 0rem !important;
+  /* margin-right: 0.5rem !important; */
 }
 
 .table-content2 {
@@ -547,8 +548,8 @@ hr {
   }
 
   .chart-container{
-     height: 250px !important;
-     width: 320px !important;
+    height: 250px !important;
+    width: 350px !important;
   }
 
   .table-content2 {
@@ -686,6 +687,12 @@ hr {
   .table-container {
     margin: 15rem 2rem;
   }
+
+  .chart-container{
+    height: 250px !important;
+    width: 300px !important;
+  }
+
 }
 
 @media screen and (max-width: 603px) {
@@ -707,6 +714,8 @@ hr {
 
   .chart-container {
     margin: 4rem 5rem !important;
+    height: 250px !important;
+    width: 400px !important;
   }
 
   .table-container3 {
@@ -784,6 +793,8 @@ hr {
 @media screen and (max-width: 551px) {
   .chart-container {
     margin: 3rem 3rem !important;
+    height: 250px !important;
+    width: 370px !important;
   }
 
   .table-container2 {
@@ -830,12 +841,11 @@ hr {
   }
 }
 
-
 @media screen and (max-width: 400px) {
   .chart-container{
-     height: 220px !important;
-     width: 240px !important;
-     margin: 3rem 1.5rem !important;
+     height: 200px !important;
+     width: 300px !important;
+     margin: 3rem 0 !important;
   }
 
   .table-content2 {
