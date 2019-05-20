@@ -12,7 +12,7 @@ Users can then vote for the player that they think is the best (with respect to 
 
 ## Architecture
 
-The website is built with a combination of HTML, CSS and JS on the frontend with a backend built upon the Flask framework along with Python. Chart.js was used for visualisation of the polls.
+The website is built with a combination of HTML, CSS and JS on the frontend with a backend built upon the Flask framework along with Python. Chart.js was used for visualisation of the polls. An sqlite database is used for storing players, polls, votes as well as user information.
 
 ## Setup
 
