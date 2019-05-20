@@ -90,7 +90,7 @@ db.session.add(p20)
 #createPolls
 po1= Polls(pollid='1', pollname='Best French Player', creatorid='00000001')
 po2= Polls(pollid='2', pollname='Best Player in FC Barcelona', creatorid='00000002')
-po3= Polls(pollid='3', pollname='Your favourite English club player', creatorid='00000005')
+po3= Polls(pollid='3', pollname='Your favourite EPL player', creatorid='00000005')
 db.session.add(po1)
 db.session.add(po2)
 db.session.add(po3)

@@ -64,8 +64,16 @@ class PollsModelCase(unittest.TestCase):
         follow_redirects=True)
 
     def login(self, email, password):
-        return self.app.post('/login', data=dict(email=email, password=password),
-            follow_redirects=True)  
+        return self.app.post('/login', follow_redirects=True)  
+
+    def viewpolls(self):
+        return self.app.get('/polllist', follow_redirects=True)  
+
+    def viewplayers(self):
+        return self.app.get('/playerlist', follow_redirects=True)  
+
+    def viewonepoll(self, pollid):
+        return self.app.get('/poll/<pollid>', follow_redirects=True)  
 
     def test_valid_user_registration(self):
         response = self.register('Hasi2', 'Hasi2@test.com', 'Hasi2test1', 'Hasi2test1')
@@ -75,9 +83,23 @@ class PollsModelCase(unittest.TestCase):
         response = self.login('Hasi', 'Hasitest1')
         self.assertEqual(response.status_code, 200)
 
-    def test_login(self):
+    def test_logout(self):
         response = self.logout()
         self.assertEqual(response.status_code, 200)
+
+    def test_viewpolls(self):
+        response = self.viewpolls()
+        self.assertEqual(response.status_code, 200)
+
+    def test_viewplayers(self):
+        response = self.viewplayers()
+        self.assertEqual(response.status_code, 200)
+
+    def test_viewonepoll(self):
+        response = self.viewonepoll(pollid='1')
+        self.assertEqual(response.status_code, 200)
+
+    
 
 
 if __name__ == '__main__':
