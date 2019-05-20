@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 
 <head>
-        <title>Soccer Polls</title>
+    <title>Soccer Polls</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
@@ -20,7 +20,11 @@
 
     <header>
         <nav class="navbar">
+            {% if current_user.is_anonymous %}
             <div class="logo">Soccer Polls</div>
+            {%else%}
+            <div class="logo">Soccer Polls - {{current_user.username}}</div>
+            {% endif%}
             <ul class="navbar-not-home">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('polllist') }}">Polls</a></li>
@@ -40,7 +44,7 @@
         </nav>
     </header>
 
-    
+
     <div>
         {% block content %}
         {% endblock %}
