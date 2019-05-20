@@ -39,13 +39,18 @@ A few users logins have been created for convenience
 ##### Admins
 
 username:`Hasi` pw:`Hasitest1`
+
 username:`Sam` pw:`Samtest1`
+
 username:`Tim` pw:`Timtest1`
+
 
 ##### Users
 
 username:`Tom` pw:`Tomtest1`
+
 username:`Michael` pw:`Michaeltest1`
+
 
 ## Tests
 
