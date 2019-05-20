@@ -157,6 +157,53 @@ function validateForm4(form) {
   else return true;
 }
 
+function validateForm5(form) {
+  field = /^\w+$/;
+  if(!field.test(form.username.value)) {
+    alert("Error: Username must contain only letters, numbers and underscores!");
+    form.username.focus();
+    return false;
+  }
+
+  if(!field.test(form.password.value)) {
+    alert("Error: Password must contain only letters, numbers and underscores!");
+    form.password.focus();
+    return false;
+  }
+
+  if(form.password.value.length < 6) {
+    alert("Error: Password must contain at least six characters!");
+    form.password.focus();
+    return false;
+  }
+
+  if(form.password.value == form.username.value) {
+    alert("Error: Password must be different from Username!");
+    form.password.focus();
+    return false;
+  }
+
+  field = /[0-9]/;
+  if(!field.test(form.password.value)) {
+    alert("Error: password must contain at least one number (0-9)!");
+    form.password.focus();
+    return false;
+  }
+  field = /[a-z]/;
+  if(!field.test(form.password.value)) {
+    alert("Error: password must contain at least one lowercase letter (a-z)!");
+    form.password.focus();
+    return false;
+  }
+  field= /[A-Z]/;
+  if(!field.test(form.password.value)) {
+    alert("Error: password must contain at least one uppercase letter (A-Z)!");
+    form.password.focus();
+    return false;
+  }
+
+}
+
 // Login Validation code ends
 
 //bar chart code
